@@ -65,8 +65,8 @@
     translate: middle;
   }
 }
-.btn-group .btn-outline-secondary {
-  color: #2d6a4f;
+.btn-group .btn-outline-success {
+  color: #fff;
 }
 #about-us-image {
   background-color: aliceblue;
