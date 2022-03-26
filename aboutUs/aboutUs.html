@@ -10,7 +10,9 @@
   <title>ABOUT GRANDEUR</title>
 </head>
 <body id="navBar">
+  <!--account navbar-->
   <nav class="navbar navbar-expand-sm" id="navBar">
+    <!--for account sign-UP-->
     <div class="container-fluid justify-content-end border-secondary border-bottom">
       <a href="#account" class="me-md-5 mb-2 text-decoration-none">
         <span class="text-white"><i class="bi bi-person-fill"></i>
@@ -20,9 +22,11 @@
     </div>
   </nav>
 
+  <!--main navbar-->
   <nav class="navbar navbar-expand-sm navbar-light">
+    <!--main navbar brand name-->
     <div class="container-fluid">
-      <a href="#intro" class="navbar-brand ms-0 ms-md-5">
+      <a href="home.html" class="navbar-brand ms-0 ms-md-5">
         <span class="fw-bold">GRANDEUR</span>
       </a>
       <!--toggle button for mobile devices-->
@@ -37,7 +41,7 @@
             <a href="#buy" class="nav-link">BUY</a>
           </li>
           <li class="nav-item mx-md-4">
-            <a href="#sell" class="nav-link">SELL</a>
+            <a href="sell.html" class="nav-link">SELL</a>
           </li>
           <li class="nav-item mx-md-4">
             <a href="faq.html" class="nav-link">FAQ</a>
@@ -48,6 +52,7 @@
         </ul>
       </div>
       
+      <!--main navbar search bar-->
       <div class="d-none d-sm-block">
       <div class="collapse navbar-collapse mt-2 mb-1 mt-md-0 me-0 me-md-5" id="main-nav">
         <div class="input-group">
@@ -59,13 +64,17 @@
     </div>
   </nav>
 
+  <!--main section which describes about grandeur-->
   <section class="container">
+    <!--row containing main section-->
     <div class="row d-flex justify-content-center align-items-center my-5">
+      <!--1st column containing grandeur logo-->
       <div class="col-12 col-md-3 position-relative">
         <div id="about-us-image">
           <span class="lead">GRANDEUR</span>
         </div>
       </div>
+      <!--2nd column containing grandeur objective-->
       <div class="col-12 col-md-7 text-white-50">
         <p class="title">About Us:</p>
         <p class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus dolor, velit beatae quis facere laborum omnis esse ea fugiat illum et qui quod provident error a minima. Dolor, ad beatae!
@@ -75,29 +84,39 @@
     </div>
   </section>
 
+  <!--sub-section containing about the developers of this website-->
   <section class="container">
+    <!--row containing the sub-section-->
     <div class="row">
+
+      <!--column-1 (vivek Kumar)-->
       <div class="col-12 col-md-4 text-center">
         <img class="img-fluid rounded-circle"  id="personal-icons" src="/images/vivekKumar.jpeg">
         <h2 class="display-6 text-white my-3" id="personal-branding">VIVEK KUMAR<br>(Front-end Developer)</h2>
         <div class="socials mb-3">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary"><i class="bi bi-linkedin"></i></button>
+            <button type="button" id="vivekLI" class="btn btn-secondary"><i class="bi bi-linkedin"></i></button>
             <button type="button" class="btn btn-secondary"><i class="bi bi-whatsapp"></i></button>
             <button type="button" class="btn btn-secondary"><i class="bi bi-instagram"></i></button>
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-4 text-center"><img class="img-fluid rounded-circle" id="personal-icons" src="/images/vinayJoshva2.jpg">        <h2 class="display-6 text-white my-3" id="personal-branding">VINAY JOSHVA<br>(Front-end Developer)</h2>
+
+      <!--column-2 (vinay joshva)-->
+      <div class="col-12 col-md-4 text-center">
+        <img class="img-fluid rounded-circle" id="personal-icons" src="/images/vinayJoshva2.jpg">        <h2 class="display-6 text-white my-3" id="personal-branding">VINAY JOSHVA<br>(Front-end Developer)</h2>
         <div class="socials mb-3">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary"><i class="bi bi-linkedin"></i></button>
+            <button type="button" id="vinayLI" class="btn btn-secondary"><i class="bi bi-linkedin"></i></button>
             <button type="button" class="btn btn-secondary"><i class="bi bi-whatsapp"></i></button>
             <button type="button" class="btn btn-secondary"><i class="bi bi-instagram"></i></button>
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-4 text-center"><img class="img-fluid rounded-circle" id="personal-icons" src="/images/pavanKumar.jpg">        <h2 class="display-6 text-white my-3" id="personal-branding">PAVAN KUMAR<br>(Back-end Engineer)</h2>
+
+      <!--column-3 (pavan Kumar)-->
+      <div class="col-12 col-md-4 text-center">
+        <img class="img-fluid rounded-circle" id="personal-icons" src="/images/pavanKumar.jpg">        <h2 class="display-6 text-white my-3" id="personal-branding">PAVAN KUMAR<br>(Back-end Engineer)</h2>
         <div class="socials mb-3">
           <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-secondary"><i class="bi bi-linkedin"></i></button>
@@ -111,7 +130,9 @@
 
   <hr class="border-secondary border-bottom">
 
+  <!--footer navbar-->
   <footer class="navbar navbar-expand-sm navbar-light" id="navBar">
+    <!--footer brand name-->
     <div class="footer-container container-fluid">
       <a href="#intro" class="navbar-brand ms-0 ms-md-5">
         <span class="fw-bold">GRANDEUR</span>
@@ -127,18 +148,19 @@
             <a href="aboutUs.html" class="nav-link">ABOUT US</a>
           </li>
           <li class="nav-item mx-md-4">
-            <a href="#contactus" class="nav-link">CONTACT US</a>
+            <a href="#contactus" id="contactus" tabindex="0" class="nav-link" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="Links are given at the right side please click on them to contact us.">CONTACT US</a>
           </li>
         </ul>
       </div>
       
+      <!--footer button group-->
       <div class="d-sm-block">
       <div class="mt-2 mb-1 mt-md-0 me-0 me-md-5" id="main-nav">
         <div class="btn-group" role="group" aria-label="Basic example">
-          <a href="#" class="btn btn-outline-secondary"><i class="bi bi-whatsapp"></i></a>
-          <a href="#" class="btn btn-outline-secondary"><i class="bi bi-envelope"></i></a>
-          <a href="#" class="btn btn-outline-secondary"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="btn btn-outline-secondary"><i class="bi bi-twitter"></i></i></a>
+          <a href="#" class="btn btn-outline-success"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="btn btn-outline-success"><i class="bi bi-envelope"></i></a>
+          <a href="#" class="btn btn-outline-success"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="btn btn-outline-success"><i class="bi bi-twitter"></i></i></a>
         </div>
       </div>
       </div>
@@ -146,5 +168,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <script src="aboutUs.js"></script>
 </body>
 </html>
