@@ -40,7 +40,7 @@
 .form-control {
   border-radius: 2rem;
 }
-.btn-group .btn-outline-secondary {
+.btn-group .btn-outline-success {
   color: #fff;
 }
 
@@ -53,6 +53,6 @@
 }
 .accordion-item {
   border: none;
-  border-radius: 0;
+  border-radius: none;
   border-bottom: 2px solid #fff;
 }
