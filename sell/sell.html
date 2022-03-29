@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="sell.css">
+  <title>Grandeur/SELL</title>
+</head>
+<body id="navBar">
+  <!--navbar-->
+  <nav class="navbar navbar-expand-sm" id="navBar">
+
+    <!--navbar for login/signUP-->
+    <div class="container-fluid justify-content-end border-secondary border-bottom">
+      <a href="#account" class="me-md-5 mb-2 text-decoration-none">
+        <span class="text-white"><i class="bi bi-person-fill"></i>
+        </span>
+        <span class="text-white">ACCOUNT</span>
+      </a>
+    </div>
+  </nav>   
+
+  <!-- main navbar-->
+  <nav class="navbar navbar-expand-sm" id="navBar">
+    <div class="container-fluid">
+
+      <!--main navbar brand name-->
+      <a href="home.html" class="navbar-brand ms-0 ms-md-5">
+        <span class="fw-bold">GRANDEUR</span>
+      </a>
+
+      <!--toggle button for mobile devices-->
+      <button class="navbar-toggler navbar-dark text-white-50" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#main-nav" aria-controls="main-nav" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Main navbar navigation links-->
+      <div class="collapse navbar-collapse navbar-dark justify-content-evenly align-center" id="main-nav">
+        <ul class="navbar-nav">
+          <li class="nav-item mx-md-4">
+            <a href="#buy" class="nav-link">BUY</a>
+          </li>
+          <li class="nav-item mx-md-4">
+            <a href="sell.html" class="nav-link">SELL</a>
+          </li>
+          <li class="nav-item mx-md-4">
+            <a href="faq.html" class="nav-link">FAQ</a>
+          </li>
+          <li class="nav-item mx-md-4">
+            <a href="aboutUs.html" class="nav-link">ABOUT US</a>
+          </li>
+        </ul>
+      </div>
+      
+      <!--Main nav search bar-->
+      <div class="d-none d-sm-block">
+      <div class="collapse navbar-collapse mt-2 mb-1 mt-md-0 me-0 me-md-5" id="main-nav">
+        <div class="input-group">
+          <i class="input-group-text bi bi-search"></i>
+          <input type="search" class="form-control text-white" placeholder="Search">
+        </div>
+      </div>
+      </div>
+    </div>
+  </nav>
+
+  <!--section containing sell model-->
+  <section class="container mt-5 position-relative">
+    <div class="row justify-content-between align-items-start">
+      <!--column containing images and submitting images by a seller-->
+      <div class="col-12 text-center col-md-5 mb-5 mb-md-0">
+        <!--button group for vintage and luxury-->
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" id="vintageButton" class="btn btn-success">VINTAGE</button>
+          <button type="button" id="luxuryButton" class="btn btn-success">LUXURY</button>
+        </div>
+        <div class="container mt-4">
+          <img src="/images/luxury5.jpg" id="changeImage" class="img-fluid mb-4 rounded-pill">
+
+          <!--input group where seller submits his/her car's images-->
+          <div class="input-group">
+            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+            <button class="btn btn-success" type="button" id="submitCarImages">Submit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- <hr width="30%" class="border2 border-bottom"> -->
+
+      <!--column containing input groups to submit all the credentials of the selling vehicle-->
+      <div class="col-12 col-md-5 ms-5 ms-md-0">
+        <!--input for username-->
+        <input class="form-control w-75 mb-4" type="text" placeholder="NAME" aria-label="default input example">
+
+        <!--input for email-->
+        <input class="form-control w-75 mb-4" type="email" placeholder="E-MAIL" aria-label="default input example">
+
+        <!--input for car-brand-->
+        <input class="form-control w-75 mb-4" type="text" placeholder="CAR BRAND" aria-label="default input example">
+
+        <!--input for car-model-->
+        <input class="form-control w-75 mb-4" type="text" placeholder="MODEL" aria-label="default input example">
+
+        <!--input for car-number-->
+        <input class="form-control w-75 mb-4" type="text" placeholder="CAR NUMBER" aria-label="default input example">
+
+        <!--input for year of manufacture-->
+        <input class="form-control w-75 mb-4" type="datetime" placeholder="YEAR OF MANUFACTURE" aria-label="default input example">
+
+        <!--input for kms driven-->
+        <input class="form-control w-75 mb-3" type="number" placeholder="KMS DRIVEN" aria-label="default input example">
+
+        <!--range bar for number of owners-->
+        <label for="numberOf-owners" class="form-label w-75 text-white">No. Of Owners (1/3)</label>
+        <input type="range" class="form-range w-25 mb-3" min="1" max="3" id="numberOf-owners">
+
+        <!--checkbox for insurance availability-->
+        <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" value="" id="insuranceAvailability">
+        <label class="form-check-label text-white" for="insuranceAvailability">Insurance Available (Y/N)</label>
+        </div>
+
+        <div class="btn-container">
+          <!--SELL button-->
+          <button class="btn btn-success px-4" type="submit">SELL</button>
+          <!--RESET button-->
+          <button class="btn btn-success px-4" type="submit">RESET</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="border-1 border-top mb-0">
+
+  <!--footer bar-->
+  <footer class="navbar navbar-expand-sm navbar-light" id="navBar">
+    <div class="footer-container container-fluid">
+
+      <!--footer brand name-->
+      <a href="#intro" class="navbar-brand ms-0 ms-md-5">
+        <span class="fw-bold">GRANDEUR</span>
+      </a>
+
+      <!--footer nav links-->
+      <div class="navbar-dark align-center" id="main-nav">
+        <ul class="navbar-nav justify-content-around">
+          <li class="nav-item mx-md-4">
+            <a href="faq.html" class="nav-link">FAQ</a>
+          </li>
+          <li class="nav-item mx-md-4">
+            <a href="aboutUs.html" class="nav-link">ABOUT US</a>
+          </li>
+          <li class="nav-item mx-md-4">
+            <a href="#contactus" id="contactus" tabindex="0" class="nav-link" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="Links are given at the right side please click on them to contact us.">CONTACT US</a>
+          </li>
+        </ul>
+      </div>
+      
+      <!--footer button group-->
+      <div class="d-sm-block">
+      <div class="mt-2 mb-1 mt-md-0 me-0 me-md-5" id="main-nav">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <a href="#" class="btn btn-outline-success"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="btn btn-outline-success"><i class="bi bi-envelope"></i></a>
+          <a href="#" class="btn btn-outline-success"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="btn btn-outline-success"><i class="bi bi-twitter"></i></i></a>
+        </div>
+      </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+  <script src="sell.js"></script>
+
+</body>
+</html>
