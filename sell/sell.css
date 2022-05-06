@@ -37,7 +37,7 @@
   width: 100%;
 }
 .input-group-text,
-.form-control {
+.form-control,.form-select {
   border-radius: 2rem;
 }
 .btn-group .btn-outline-success {
@@ -48,9 +48,6 @@
 }
 .btn-container {
   display: flex;
-}
-.btn-container .btn-success {
-  /* border-radius: 2rem; */
 }
 .btn-container .btn-success:last-child {
   margin-left: 200px;

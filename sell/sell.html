@@ -15,7 +15,7 @@
 
     <!--navbar for login/signUP-->
     <div class="container-fluid justify-content-end border-secondary border-bottom">
-      <a href="#account" class="me-md-5 mb-2 text-decoration-none">
+      <a href="/account/account.html" class="me-md-5 mb-2 text-decoration-none">
         <span class="text-white"><i class="bi bi-person-fill"></i>
         </span>
         <span class="text-white">ACCOUNT</span>
@@ -27,8 +27,8 @@
   <nav class="navbar navbar-expand-sm" id="navBar">
     <div class="container-fluid">
 
-      <!--main navbar brand name-->
-      <a href="home.html" class="navbar-brand ms-0 ms-md-5">
+      <!--main navbar brand -->
+      <a href="/home/home.html" class="navbar-brand ms-0 ms-md-5">
         <span class="fw-bold">GRANDEUR</span>
       </a>
 
@@ -44,13 +44,13 @@
             <a href="#buy" class="nav-link">BUY</a>
           </li>
           <li class="nav-item mx-md-4">
-            <a href="sell.html" class="nav-link">SELL</a>
+            <a href="/sell/sell.html" class="nav-link">SELL</a>
           </li>
           <li class="nav-item mx-md-4">
-            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="/faq/faq.html" class="nav-link">FAQ</a>
           </li>
           <li class="nav-item mx-md-4">
-            <a href="aboutUs.html" class="nav-link">ABOUT US</a>
+            <a href="/aboutUs/aboutUs.html" class="nav-link">ABOUT US</a>
           </li>
         </ul>
       </div>
@@ -60,7 +60,7 @@
       <div class="collapse navbar-collapse mt-2 mb-1 mt-md-0 me-0 me-md-5" id="main-nav">
         <div class="input-group">
           <i class="input-group-text bi bi-search"></i>
-          <input type="search" class="form-control text-white" placeholder="Search">
+          <input type="search" class="form-control" placeholder="Search">
         </div>
       </div>
       </div>
@@ -91,45 +91,59 @@
       <!-- <hr width="30%" class="border2 border-bottom"> -->
 
       <!--column containing input groups to submit all the credentials of the selling vehicle-->
-      <div class="col-12 col-md-5 ms-5 ms-md-0">
+      <form action="" method="GET" class="col-12 col-md-5 ms-5 ms-md-0">
+      <div>
         <!--input for username-->
-        <input class="form-control w-75 mb-4" type="text" placeholder="NAME" aria-label="default input example">
+        <input class="form-control w-75 mb-4" type="text" placeholder="NAME" aria-label="default input example" id="seller-name" required>
 
         <!--input for email-->
-        <input class="form-control w-75 mb-4" type="email" placeholder="E-MAIL" aria-label="default input example">
+        <input class="form-control w-75 mb-4" type="email" placeholder="E-MAIL" aria-label="default input example" id="seller-email"required>
 
         <!--input for car-brand-->
-        <input class="form-control w-75 mb-4" type="text" placeholder="CAR BRAND" aria-label="default input example">
+        <input class="form-control w-75 mb-4" type="text" placeholder="CAR BRAND" aria-label="default input example" id="car-brand"required>
 
         <!--input for car-model-->
-        <input class="form-control w-75 mb-4" type="text" placeholder="MODEL" aria-label="default input example">
+        <input class="form-control w-75 mb-4" type="text" placeholder="MODEL" aria-label="default input example" id="car-model"required>
 
         <!--input for car-number-->
-        <input class="form-control w-75 mb-4" type="text" placeholder="CAR NUMBER" aria-label="default input example">
+        <input class="form-control w-75 mb-4" type="text" placeholder="CAR NUMBER" aria-label="default input example" id="car-number"required>
 
         <!--input for year of manufacture-->
-        <input class="form-control w-75 mb-4" type="datetime" placeholder="YEAR OF MANUFACTURE" aria-label="default input example">
+        <input class="form-control w-75 mb-4" type="text" placeholder="YEAR OF MANUFACTURE" aria-label="default input example" id="year-of-manufacture" required>
 
         <!--input for kms driven-->
-        <input class="form-control w-75 mb-3" type="number" placeholder="KMS DRIVEN" aria-label="default input example">
+        <input class="form-control w-75 mb-4" type="text" placeholder="KMS DRIVEN" aria-label="default input example" id="kilometers-driven" required>
+
+        <input class="form-control w-75 mb-4" type="text" placeholder="PRICE" aria-label="default input example" id="car-price" required>
+
+        <input class="form-control w-75 mb-4" type="text" placeholder="Any damages?" aria-label="default input example" id="damages" required>
+
+        <!--type of car-->
+        <!-- <label for="numberOf-owners" class="form-label w-75 text-white">Type of car</label> -->
+        <select class="form-select mb-4 w-75 btn-outline-success" aria-label="Default select example" id="car-type">
+          <option selected>Type of car</option>
+          <option value="Vintage">VINTAGE</option>
+          <option value="Luxury">LUXURY</option>
+        </select>
 
         <!--range bar for number of owners-->
-        <label for="numberOf-owners" class="form-label w-75 text-white">No. Of Owners (1/3)</label>
-        <input type="range" class="form-range w-25 mb-3" min="1" max="3" id="numberOf-owners">
+        <label for="numberOf-owners" class="form-label w-75 text-white d-block">No. Of Owners (1/3)</label>
+        <input type="range" class="form-range w-25 mb-4" min="1" max="3" id="numberOf-owners">
 
         <!--checkbox for insurance availability-->
-        <div class="form-check mb-3">
+        <div class="form-check mb-4">
         <input class="form-check-input" type="checkbox" value="" id="insuranceAvailability">
         <label class="form-check-label text-white" for="insuranceAvailability">Insurance Available (Y/N)</label>
         </div>
 
         <div class="btn-container">
           <!--SELL button-->
-          <button class="btn btn-success px-4" type="submit">SELL</button>
+          <button class="btn btn-success px-4" onclick="sell()" type="submit">SELL</button>
           <!--RESET button-->
-          <button class="btn btn-success px-4" type="submit">RESET</button>
+          <button class="btn btn-success px-4" onclick="reset()" type="submit">RESET</button>
         </div>
       </div>
+      </form>
     </div>
   </section>
 
@@ -140,7 +154,7 @@
     <div class="footer-container container-fluid">
 
       <!--footer brand name-->
-      <a href="#intro" class="navbar-brand ms-0 ms-md-5">
+      <a href="/home/home.html" class="navbar-brand ms-0 ms-md-5">
         <span class="fw-bold">GRANDEUR</span>
       </a>
 
@@ -148,10 +162,10 @@
       <div class="navbar-dark align-center" id="main-nav">
         <ul class="navbar-nav justify-content-around">
           <li class="nav-item mx-md-4">
-            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="/faq/faq.html" class="nav-link">FAQ</a>
           </li>
           <li class="nav-item mx-md-4">
-            <a href="aboutUs.html" class="nav-link">ABOUT US</a>
+            <a href="/aboutUs/aboutUs.html" class="nav-link">ABOUT US</a>
           </li>
           <li class="nav-item mx-md-4">
             <a href="#contactus" id="contactus" tabindex="0" class="nav-link" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="Links are given at the right side please click on them to contact us.">CONTACT US</a>
