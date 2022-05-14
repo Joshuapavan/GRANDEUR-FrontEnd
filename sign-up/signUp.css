@@ -15,7 +15,7 @@
 }
 
 .signUp-content {
-  height: 540px;
+  height: 560px;
   width: 500px;
   background: #fff;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
@@ -46,4 +46,11 @@ div > p:last-child {
 }
 .text-danger:hover {
   text-decoration: underline;
+}
+#label-for-mail {
+  color: red;
+}
+#error-message {
+  color: red;
+  float: left;
 }
