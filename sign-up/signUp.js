@@ -15,7 +15,8 @@ async function validate() {
   else
   if(password == confirmPassword && email.match(mailRegex)){
 
-    const response = await fetch('http://localhost:8090/api/v1/registration',{
+    const signUpApi = 'http://localhost:8090/api/v1/registration';
+    const response = await fetch(signUpApi,{
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(

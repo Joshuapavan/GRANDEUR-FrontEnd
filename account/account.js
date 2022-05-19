@@ -21,7 +21,8 @@ async function validate() {
   }
   else
   if(email.length > 0 && password.length > 0){
-    const response = await fetch('http://localhost:8090/api/v1/clients/signIn',{
+    const signInApi = 'http://localhost:8090/api/v1/clients/signIn';
+    const response = await fetch(signInApi,{
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body : JSON.stringify(

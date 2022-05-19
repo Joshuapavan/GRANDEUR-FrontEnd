@@ -31,8 +31,8 @@ const randomIndex2 = function() {
 }
 
 
-//main uploading 
-function sell() {
+// API call and data transfer method // 
+async function sell() {
   const sellerName=document.getElementById("seller-name").value;
   const sellerEmail=document.getElementById("seller-email").value;
   const brand=document.getElementById("car-brand").value;
@@ -50,43 +50,102 @@ function sell() {
   if(insuranceAvailability.checked == true) {
     insurance = true; 
   }else{
-     insurance = false;
+    insurance = false;
   }
   const damages = document.getElementById("damages").value;
 
-  
-
-  
-  console.log(ownerCount);
-
-
-  fetch("http://localhost:8090/api/v1/cars", {
-       method: "POST",
-      body: JSON.stringify(
-        {
+  const sellApi = 'http://localhost:8090/api/v1/cars/'+sellerEmail;
+  const response = await fetch(sellApi, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(
+      {
         "sellerName" : sellerName,
         "sellerEmail" : sellerEmail,
-        "brand": brand,
-        "number":number,
-        "model":model,
-        "carType":carType,
-        "year":year,
-        "kms":kms,
-        "ownerCount":ownerCount,
-        "expectedPrice":expectedPrice,
-        "insuranceAvailability":insurance,
-        "damages":damages
+        "brand" : brand,
+        "number" : number,
+        "model" : model,
+        "carType" : carType,
+        "year" : year,
+        "kms" : kms,
+        "ownerCount" : ownerCount,
+        "expectedPrice" : expectedPrice,
+        "insuranceAvailability" : insurance,
+        "damages" : damages
+      }
+    )
+  })
+  .catch(error =>{
+    alert(error.message)
+  })
+
+  // extracting the data from the response promise // 
+  var data = await response.text()
+
+  if(response.status >= 200 && response.status < 300) {
+  // do nothing // 
+    alert('added a car!')
+  }
+  else if(response.status >= 400 && response.status < 500) {
+    if(response.status === 404) {
+      alert('Invalid Email, please sign up')
     }
-    ),
-    headers: {
-        "Content-type": "application/json; charset=UTF-8"
-    }
-})
- .then(response => response.json())
- .then(json => console.log());
+    alert('error while adding the car, Please fill all details \n('+response.status+')')
+  }
+  else if(response.status >= 500 && response.status < 600){
+    alert('Internal Server Error '+data.error+' '+response.status)
+  }
 }
 
-// buttonClick.addEventListener("click", (firstName) => {
-//   // e.preventDefault();
-//   console.log(firstName.value);
-// })
+async function postImages(){
+  const image = document.getElementById('file').files[0];
+  var base64Image;
+
+  var reader = new FileReader();
+  reader.readAsDataURL(image);
+  reader.onload = function(){
+    base64Image = reader.result;
+  };
+  reader.onerror = function(error){
+    console.log(error.message); 
+  }
+
+  // const image = document.getElementById('file');
+  // const image = document.getElementById('file');
+  // const image = document.getElementById('file');
+
+  const sellerEmail=document.getElementById("seller-email").value;
+  const imageApi = 'http://localhost:8090/api/v1/cars/'+sellerEmail+'/image1';
+
+  // var formData = new FormData();
+  // formData.append('image1',image);
+
+  const response = await fetch(imageApi,{
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(
+      {
+        "image": base64Image
+      }
+    )
+  })
+
+  var data = await response.text();
+  
+  alert(data);
+
+
+
+}
+
+// function getBase64(file) {
+//   var reader = new FileReader();
+//   reader.readAsDataURL(file);
+//   reader.onload = function () {
+//     console.log(reader.result);
+//     return reader.result;
+//   };
+//   reader.onerror = function (error) {
+//     console.log('Error: ', error);
+//   };
+// }
