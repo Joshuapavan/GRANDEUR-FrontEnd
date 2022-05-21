@@ -1,8 +1,14 @@
 #navBar {
   /* background-color: #264653; */
   /* background-color: #212f45; */
-  background-color: #081c15;
+  /* background-color: #081c15; */
+  background-color: #000000;
 }
+
+html{
+  scroll-behavior: smooth;
+}
+
 .text-decoration-none {
   font-size: 1rem;
 }
@@ -38,7 +44,7 @@
 }
 .input-group-text,
 .form-control {
-  border-radius: 2rem;
+  border-radius: 0.5rem;
 }
 .btn-group .btn-outline-success {
   color: #fff;

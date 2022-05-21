@@ -9,6 +9,9 @@ const imageChange = document.querySelector('#changeImage');
 const baseUrl = '/images/vintage';
 const baseUrl2 = '/images/luxury';
 
+
+
+
 vintage.addEventListener('click', function() {
   const newIndex = randomIndex();
   image.src = `${baseUrl}${newIndex}.jpg`;
@@ -25,10 +28,41 @@ const randomIndex = function() {
   let rand = Math.floor(Math.random() * 7);
   return rand;
 }
+
 const randomIndex2 = function() {
   let rand = Math.floor(Math.random() * 11);
   return rand;
 }
+
+
+
+
+// random number to select car buttons // 
+const randomNumber = function(){
+  let rand = Math.floor(Math.random() * 2)
+  return rand;
+}
+
+
+
+const slider = document.querySelector('#numberOf-owners');
+slider.value = 0;
+slider.addEventListener('change',function sliderChanged(){
+  var count = slider.value;
+  document.getElementById('ownerCount').innerHTML = "No. Of Owners ("+count+"/3)";
+
+})
+
+const insurance = document.querySelector('#insuranceAvailability');
+insurance.addEventListener('change', function insuranceChecked(){
+  if(insurance.checked == true){
+    document.getElementById('insuranceLabel').innerHTML = "Insurance Available";
+  }
+  else if(insurance.checked == false){
+    document.getElementById('insuranceLabel').innerHTML = "Insurance Not Available";
+  }
+})
+
 
 
 // API call and data transfer method // 
@@ -98,54 +132,48 @@ async function sell() {
 }
 
 async function postImages(){
-  const image = document.getElementById('file').files[0];
-  var base64Image;
-
-  var reader = new FileReader();
-  reader.readAsDataURL(image);
-  reader.onload = function(){
-    base64Image = reader.result;
-  };
-  reader.onerror = function(error){
-    console.log(error.message); 
-  }
-
-  // const image = document.getElementById('file');
-  // const image = document.getElementById('file');
-  // const image = document.getElementById('file');
+  const file = document.getElementById('file');
 
   const sellerEmail=document.getElementById("seller-email").value;
   const imageApi = 'http://localhost:8090/api/v1/cars/'+sellerEmail+'/image1';
 
+  const formData = new FormData();
+  formData.append('image1',file.files[0]);
+
+  const response = await fetch(imageApi,
+    {
+      method: 'POST',
+      body: formData
+    });
+
+    var data = await response.json();
+  
+    alert(data);
+    console.log(data);
+  
+  }
+
+
+  window.onload = function(){
+    let cookie = {};
+    document.cookie.split(';').forEach(function(temp) {
+    let [key,value] = temp.split('=');
+    cookie[key.trim()] = value;
+    })
+    const loginDiv = document.getElementById('loginLabel').innerHTML = cookie.name;
+    if(cookie == ''){
+    loginDiv.innerHTML = "Login";
+    }
+  }
+
+
+
+
+  // const image = document.getElementById('file');
+  // const image = document.getElementById('file');
+  // const image = document.getElementById('file');
+
+
+
   // var formData = new FormData();
   // formData.append('image1',image);
-
-  const response = await fetch(imageApi,{
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(
-      {
-        "image": base64Image
-      }
-    )
-  })
-
-  var data = await response.text();
-  
-  alert(data);
-
-
-
-}
-
-// function getBase64(file) {
-//   var reader = new FileReader();
-//   reader.readAsDataURL(file);
-//   reader.onload = function () {
-//     console.log(reader.result);
-//     return reader.result;
-//   };
-//   reader.onerror = function (error) {
-//     console.log('Error: ', error);
-//   };
-// }

@@ -4,8 +4,10 @@
 #navBar {
   /* background-color: #264653; */
   /* background-color: #212f45; */
-  background-color: #081c15;
+  /* background-color: #081c15; */
+  background-color: #000000;
 }
+
 .text-decoration-none {
   font-size: 1rem;
 }
@@ -23,6 +25,7 @@
 .navbar .navbar-nav .nav-item {
   position: relative;
 }
+
 .navbar .navbar-nav .nav-item::after {
   position: absolute;
   bottom: 0;
@@ -41,7 +44,7 @@
 }
 .input-group-text,
 .form-control {
-  border-radius: 2rem;
+  border-radius: 0.5rem;
 }
 /* img {
   height: 54rem;
@@ -94,4 +97,13 @@ div > .lead {
 }
 footer > .footer-container {
   display: block;
+}
+
+/* josh */
+.buttons {
+  background-color: #000000;
+  color: #ffffff;
+  padding : 0.5rem;
+  text-align: center;
+  border-radius: 0.5rem;
 }

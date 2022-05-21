@@ -10,6 +10,10 @@
   text-align: center;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 .bi-x-lg {
   margin-left: 440px;
 }
