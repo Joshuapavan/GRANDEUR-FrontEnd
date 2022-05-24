@@ -44,7 +44,7 @@ async function validate() {
         if(cookie.name != data.name){
           cookie = "name=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
           cookie = "email= expires = Thu, 01 Jan 1970 00:00:00 GMT";
-          createCookie(data.name,data.email);
+          createLocalStorage(data.name,data.email);
         }
         alert("created cookie ");
 
@@ -66,24 +66,7 @@ else{
   }
 }
 
-
-function createCookie(name,email){
-  // today = new Date();
-  // var expire = new Date();
-  // expire.setTime(today.getTime() + 3600000*24*365);
-
-  // document.cookie = "name="+name+";path=/" + ";expires="+expire.toUTCString();
-  document.cookie = "name="+name+";path=/";
-  // document.cookie = "email="+email+";path=/" + ";expires="+expire.toUTCString();
-  document.cookie = "email="+email+";path=/";
-}  
-
-
-function getCookie(cookieName) {
-  let cookie = {};
-  document.cookie.split(';').forEach(function(el) {
-    let [key,value] = el.split('=');
-    cookie[key.trim()] = value;
-  })
-  return cookie[cookieName];
+function createLocalStorage(name,email){
+  localStorage.setItem("name",name);
+  localStorage.setItem("email",email);
 }

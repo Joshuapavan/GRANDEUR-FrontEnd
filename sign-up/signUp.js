@@ -1,4 +1,4 @@
-async function validate() {
+document.getElementById('btn-sign').addEventListener('click', async function(){
   const firstName=document.getElementById("firstName").value;
   const lastName=document.getElementById("lastName").value;
   const email=document.getElementById("email").value;
@@ -28,6 +28,7 @@ async function validate() {
     })
 
     var data = await response.json();
+    validate(data.name, data.email);
 
     // if response is okay 
     if(response.status >= 200 && response.status < 300) {
@@ -51,34 +52,15 @@ async function validate() {
   else{
     errorMessage.innerHTML = "passwords don't match. Please try again!";
   }
+});
 
+
+function validate(name, email){
+  const localName = localStorage.getItem('name');
+  const localEmail = localStorage.getItem('email');
+
+  if(localName != name && localEmail != email){
+    localStorage.setItem('name',name);
+    localStorage.setItem('email',email);
+  }
 }
-
-//   else{
-//       const response = await fetch("http://localhost:8090/api/v1/registration", {
-//       method: "POST",
-//       headers: { "Content-type": "application/json" },
-//       body: JSON.stringify(
-//         {
-//         "name" : fullName,
-//         "email" : email,
-//         "password": pwd
-//       })
-// })
-
-//   var data = await response.json();
-
-//   if(response.status >= 200 && response.status < 300) {
-//     // printing something related to success response // 
-//     alert("welcome "+data.name+" to Grandeur.\ Please check your ")
-//   }
-  
-//   if(response.status >= 400 && response.status < 500) {
-//     alert("the email "+data.email+" already exists. Please try again ("+response.status+")")
-//   }
-  
-//   if(response.status >= 500 && response.status < 600) {
-//     alert("Internal server error: "+response.status)
-//   }
-// }
-

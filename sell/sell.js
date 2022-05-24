@@ -15,19 +15,6 @@ const imageApi = 'http://localhost:8090/api/v1/cars/image1';
 const cloudflairAPI = 'https://api.cloudinary.com/v1_1/do1xxh1r3/image/upload';
 const cloudflairPreset = 'c0a3jkpf';
 
-
-vintage.addEventListener('click', function() {
-  const newIndex = randomIndex();
-  image.src = `${baseUrl}${newIndex}.jpg`;
-  image.append(imageChange);
-})
-
-luxury.addEventListener('click', function() {
-  const indexNew = randomIndex2();
-  image.src = `${baseUrl2}${indexNew}.jpg`;
-  image.append(imageChange);
-})
-
 const randomIndex = function() {
   let rand = Math.floor(Math.random() * 7);
   return rand;
@@ -37,14 +24,6 @@ const randomIndex2 = function() {
   let rand = Math.floor(Math.random() * 11);
   return rand;
 }
-
-
-// random number to select car buttons // 
-const randomNumber = function(){
-  let rand = Math.floor(Math.random() * 2)
-  return rand;
-}
-
 
 
 const slider = document.getElementById('numberOf-owners');
@@ -65,8 +44,7 @@ insurance.addEventListener('change', function insuranceChecked(){
 });
 
 
-document.getElementById('sell-button').addEventListener('click', async(event) =>{
-  event.preventDefault();
+document.getElementById('sell-button').addEventListener('click', async() =>{
   const sellerName=document.getElementById("seller-name").value;
   const sellerEmail=document.getElementById("seller-email").value;
   const brand=document.getElementById("car-brand").value;
@@ -153,16 +131,39 @@ document.getElementById('sell-button').addEventListener('click', async(event) =>
   else if(response.status >= 500 && response.status < 600){
     alert('Internal Server Error '+data.error+' '+response.status)
   }
+});
+
+document.getElementById('reset-button').addEventListener('click', function(){
+  const sellerName=document.getElementById("seller-name");
+  sellerName.value = "";
+  const sellerEmail=document.getElementById("seller-email");
+  sellerEmail.value = "";
+  const brand=document.getElementById("car-brand");
+  brand.value = "";
+  const number=document.getElementById("car-number");
+  number.value = "";
+  const model=document.getElementById("car-model");
+  model.value = "";
+  const carType = document.getElementById("car-type");
+  carType.value = "";
+  const year = document.getElementById("year-of-manufacture");
+  year.value = "";
+  const kms = document.getElementById("kilometers-driven");
+  kms.value = "";
+  const ownerCount = document.getElementById("numberOf-owners");
+  ownerCount = "";
+  const expectedPrice = document.getElementById("car-price");
+  expectedPrice.value = "";
 })
 
   window.onload = function(){
-    let cookie = {};
-    document.cookie.split(';').forEach(function(temp) {
-    let [key,value] = temp.split('=');
-    cookie[key.trim()] = value;
-    })
-    const loginDiv = document.getElementById('loginLabel').innerHTML = cookie.name;
-    if(cookie == ''){
-    loginDiv.innerHTML = "Login";
+    const localName = localStorage.getItem('name');
+    const localEmail = localStorage.getItem('email');
+  
+    if(localName != '' && localEmail != ''){
+      document.getElementById('loginLabel').innerHTML = localStorage.getItem('name');
+    }
+    else{
+      document.getElementById('loginLabel').innerHTML = 'Login';
     }
   }
