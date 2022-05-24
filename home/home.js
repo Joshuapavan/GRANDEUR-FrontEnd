@@ -42,3 +42,6 @@ window.onload = function(){
   loginDiv.innerHTML = "Login";
   }
 }
+
+
+// set interval //

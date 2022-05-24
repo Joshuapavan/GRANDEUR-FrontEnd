@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="526" height="518" viewBox="0 0 526 518">
+  <g id="Group_1" data-name="Group 1" transform="translate(-715 -221)">
+    <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(715 221)" stroke="#707070" stroke-width="1">
+      <ellipse cx="263" cy="259" rx="263" ry="259" stroke="none"/>
+      <ellipse cx="263" cy="259" rx="262.5" ry="258.5" fill="none"/>
+    </g>
+    <text id="G" transform="translate(830 620)" fill="#fff" font-size="400" font-family="UtopiaStd-BlackHeadline, Utopia Std" font-weight="800"><tspan x="0" y="0">G</tspan></text>
+  </g>
+</svg>

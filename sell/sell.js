@@ -9,7 +9,11 @@ const imageChange = document.querySelector('#changeImage');
 const baseUrl = '/images/vintage';
 const baseUrl2 = '/images/luxury';
 
+const sellerEmail=document.getElementById("seller-email").value;
+const imageApi = 'http://localhost:8090/api/v1/cars/image1';
 
+const cloudflairAPI = 'https://api.cloudinary.com/v1_1/do1xxh1r3/image/upload';
+const cloudflairPreset = 'c0a3jkpf';
 
 
 vintage.addEventListener('click', function() {
@@ -35,8 +39,6 @@ const randomIndex2 = function() {
 }
 
 
-
-
 // random number to select car buttons // 
 const randomNumber = function(){
   let rand = Math.floor(Math.random() * 2)
@@ -45,13 +47,12 @@ const randomNumber = function(){
 
 
 
-const slider = document.querySelector('#numberOf-owners');
-slider.value = 0;
-slider.addEventListener('change',function sliderChanged(){
+const slider = document.getElementById('numberOf-owners');
+slider.value = 1;
+slider.addEventListener('change',function(){
   var count = slider.value;
   document.getElementById('ownerCount').innerHTML = "No. Of Owners ("+count+"/3)";
-
-})
+});
 
 const insurance = document.querySelector('#insuranceAvailability');
 insurance.addEventListener('change', function insuranceChecked(){
@@ -61,12 +62,11 @@ insurance.addEventListener('change', function insuranceChecked(){
   else if(insurance.checked == false){
     document.getElementById('insuranceLabel').innerHTML = "Insurance Not Available";
   }
-})
+});
 
 
-
-// API call and data transfer method // 
-async function sell() {
+document.getElementById('sell-button').addEventListener('click', async(event) =>{
+  event.preventDefault();
   const sellerName=document.getElementById("seller-name").value;
   const sellerEmail=document.getElementById("seller-email").value;
   const brand=document.getElementById("car-brand").value;
@@ -80,6 +80,10 @@ async function sell() {
 
   const insuranceAvailability = document.getElementById("insuranceAvailability");
 
+  const images = document.getElementById('file').files;
+  var imageURL;
+
+
   let insurance;
   if(insuranceAvailability.checked == true) {
     insurance = true; 
@@ -87,6 +91,25 @@ async function sell() {
     insurance = false;
   }
   const damages = document.getElementById("damages").value;
+
+  if(!images.size == 0){
+    alert("Please select an image");
+  }
+  else{  
+  const files = document.getElementById('file').files;
+  const formData = new FormData();
+  formData.append('file',files[0]);
+  formData.append('upload_preset',cloudflairPreset);
+
+  const response = await fetch(cloudflairAPI,{
+  method: 'POST',
+  body: formData
+})
+
+    var data = await response.json();
+
+    imageURL = data.secure_url;
+  }
 
   const sellApi = 'http://localhost:8090/api/v1/cars/'+sellerEmail;
   const response = await fetch(sellApi, {
@@ -105,6 +128,7 @@ async function sell() {
         "ownerCount" : ownerCount,
         "expectedPrice" : expectedPrice,
         "insuranceAvailability" : insurance,
+        "imageURL" : imageURL,
         "damages" : damages
       }
     )
@@ -129,30 +153,7 @@ async function sell() {
   else if(response.status >= 500 && response.status < 600){
     alert('Internal Server Error '+data.error+' '+response.status)
   }
-}
-
-async function postImages(){
-  const file = document.getElementById('file');
-
-  const sellerEmail=document.getElementById("seller-email").value;
-  const imageApi = 'http://localhost:8090/api/v1/cars/'+sellerEmail+'/image1';
-
-  const formData = new FormData();
-  formData.append('image1',file.files[0]);
-
-  const response = await fetch(imageApi,
-    {
-      method: 'POST',
-      body: formData
-    });
-
-    var data = await response.json();
-  
-    alert(data);
-    console.log(data);
-  
-  }
-
+})
 
   window.onload = function(){
     let cookie = {};
@@ -165,15 +166,3 @@ async function postImages(){
     loginDiv.innerHTML = "Login";
     }
   }
-
-
-
-
-  // const image = document.getElementById('file');
-  // const image = document.getElementById('file');
-  // const image = document.getElementById('file');
-
-
-
-  // var formData = new FormData();
-  // formData.append('image1',image);
