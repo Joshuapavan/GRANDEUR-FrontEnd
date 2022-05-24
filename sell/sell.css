@@ -1,40 +1,42 @@
-#navBar {
+body {
   /* background-color: #264653;
   background-color: #212f45; */
   /* background-color: #081c15; */
   /* background-color: #212121; */
+  background: linear-gradient(90deg, black, #0F2027, #203A43, #2C5364, black 95%);
+}
+nav {
   background-color: #000000;
 }
-  
 
 html{
   scroll-behavior: smooth;
 }
-
 .text-decoration-none {
   font-size: 1rem;
 }
 .navbar-brand span {
   font-size: 2rem;
-  color: #f5f5f5;
+  color: rgb(255, 255, 255);
 }
 .navbar .navbar-nav .nav-link {
-  color: #f5f5f5;
+  color: rgb(255, 255, 255);
   font-size: 1em;
 }
 .navbar .navbar-nav .nav-link:hover {
-  color: #f5f5f5;
+  color: rgb(255, 255, 255);
 }
 .navbar .navbar-nav .nav-item {
   position: relative;
 }
+
 .navbar .navbar-nav .nav-item::after {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
-  background-color: #2d6a4f;
+  background-color: darkorange;
   width: 0%;
   content: "";
   height: 2px;
@@ -45,7 +47,7 @@ html{
   width: 100%;
 }
 .input-group-text,
-.form-control,.form-select {
+.form-control {
   border-radius: 0.5rem;
 }
 .btn-group .btn-outline-success {
@@ -65,3 +67,45 @@ html{
   transform: rotate(90deg);
   font-size: 1.5em;
 } */ ;
+#account-click span {
+  color: darkorange;
+  font-size: 1em;
+}
+.input-group .btn-success {
+  background-color: darkorange;
+  border: none;
+  color: black;
+  text-transform: uppercase;
+}
+.input-group .btn-success:hover {
+  background-color: b36f00;
+  box-shadow: -webkit-box-shadow: 0px 0px 10px 2px rgba(92,92,92,1);
+  -moz-box-shadow: 0px 0px 10px 2px rgba(92,92,92,1);
+  box-shadow: 0px 0px 10px 2px rgba(92,92,92,1);
+  transition: box-shadow background-color 0.2s;
+}
+.bg-light {
+  background-color: transparent !important;
+}
+.btn-container .btn-success{
+  background-color: darkorange;
+  border: none !important;
+  color: black;
+  text-transform: uppercase;
+}
+.btn-container .btn-success:hover {
+  background-color: b36f00;
+  box-shadow: -webkit-box-shadow: 0px 0px 10px 2px rgba(92,92,92,1);
+  -moz-box-shadow: 0px 0px 10px 2px rgba(92,92,92,1);
+  box-shadow: 0px 0px 10px 2px rgba(92,92,92,1);
+  transition: box-shadow background-color 0.2s;
+}
+.btn-group .btn-dark{
+  border: 1px solid darkorange;
+  background-color: transparent;
+  color: darkorange;
+}
+.btn-group .btn-dark:hover {
+  background-color: darkorange;
+  color: white;
+}

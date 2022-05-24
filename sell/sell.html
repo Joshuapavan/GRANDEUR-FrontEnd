@@ -9,39 +9,24 @@
   <link rel="stylesheet" href="sell.css">
   <title>Sell-Grandeur</title>
 </head>
-<body id="navBar">
+<body>
   <!--navbar-->
-  <nav class="navbar navbar-expand-sm" id="navBar">
-
-    <!--navbar for login/signUP-->
-    <div class="container-fluid justify-content-end border-secondary border-bottom">
-      <a href="/account/account.html" class="me-md-5 mb-2 text-decoration-none">
-        <span class="text-white"><i class="bi bi-person-fill"></i>
-        </span>
-        <span class="text-white" id="loginLabel"></span>
-      </a>
-    </div>
-  </nav>   
-
-  <!-- main navbar-->
-  <nav class="navbar navbar-expand-sm" id="navBar">
-    <div class="container-fluid">
-
-      <!--main navbar brand -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navBar">
+    <div class="container">
       <a href="/home/home.html" class="navbar-brand ms-0 ms-md-5">
         <span class="fw-bold">GRANDEUR</span>
       </a>
-
+      
       <!--toggle button for mobile devices-->
       <button class="navbar-toggler navbar-dark text-white-50" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#main-nav" aria-controls="main-nav" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Main navbar navigation links-->
+      <!--navbar links-->
       <div class="collapse navbar-collapse navbar-dark justify-content-evenly align-center" id="main-nav">
         <ul class="navbar-nav">
           <li class="nav-item mx-md-4">
-            <a href="#buy" class="nav-link">BUY</a>
+            <a href="/buy/buy.html" class="nav-link">BUY</a>
           </li>
           <li class="nav-item mx-md-4">
             <a href="/sell/sell.html" class="nav-link">SELL</a>
@@ -55,36 +40,54 @@
         </ul>
       </div>
       
-      <!--Main nav search bar-->
+      <!--search bar-->
       <div class="d-none d-sm-block">
       <div class="collapse navbar-collapse mt-2 mb-1 mt-md-0 me-0 me-md-5" id="main-nav">
         <div class="input-group">
           <i class="input-group-text bi bi-search"></i>
-          <input type="search" class="form-control" placeholder="Search">
+          <input type="search" class="form-control text-white" placeholder="Search">
         </div>
       </div>
       </div>
+
+      <div class="d-none d-sm-block" id = "accountDiv">
+        <a  href="/account/account.html" target="_parent" class="text-decoration-none text-white-50" id="account-click">
+          <span><i class="bi bi-person-fill"></i>
+          </span>
+          <span id="loginLabel"></span>
+        </a>
+      </div>
     </div>
   </nav>
+  
 
   <!--section containing sell model-->
   <section class="container mt-5 position-relative">
     <div class="row justify-content-between align-items-start">
       <!--column containing images and submitting images by a seller-->
       <div class="col-12 text-center col-md-5 mb-5 mb-md-0">
-        <!--button group for vintage and luxury-->
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" id="vintageButton" class="btn btn-success">VINTAGE</button>
-          <button type="button" id="luxuryButton" class="btn btn-success">LUXURY</button>
-        </div>
-        <div class="container mt-4">
-          <img src="/images/luxury5.jpg" id="changeImage" class="img-fluid mb-4 rounded-pill">
-
-          <!--input group where seller submits his/her car's images-->
-          <div class="input-group">
-            <input type="file" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id = "file" enctype="multipart/form-data">
-            <button class="btn btn-success" type="button" id="submitCarImages" onclick="postImages()">Submit</button>
+        <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div class="carousel-inner rounded-pill">
+            <div class="carousel-item active">
+              <img src="/images/luxury5.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="/images/luxury6.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="/images/luxury8.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="/images/simon-humler-gAEXE_dXJ8s-unsplash.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="/images/rolls2.jpg" class="d-block w-100" alt="...">
+            </div>
           </div>
+        </div>
+
+        <div class="input-group mt-4">
+          <input type="file" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id = "file" enctype="multipart/form-data">
         </div>
       </div>
 
@@ -94,33 +97,33 @@
       <form class="col-12 col-md-5 ms-5 ms-md-0">
       <div>
         <!--input for username-->
-        <input class="form-control w-75 mb-4" type="text" placeholder="NAME" aria-label="default input example" id="seller-name" required>
+        <input class="form-control w-75 mb-3" type="text" placeholder="NAME" aria-label="default input example" id="seller-name" required>
 
         <!--input for email-->
-        <input class="form-control w-75 mb-4" type="email" placeholder="E-MAIL" aria-label="default input example" id="seller-email"required>
+        <input class="form-control w-75 mb-3" type="email" placeholder="E-MAIL" aria-label="default input example" id="seller-email"required>
 
         <!--input for car-brand-->
-        <input class="form-control w-75 mb-4" type="text" placeholder="CAR BRAND" aria-label="default input example" id="car-brand"required>
+        <input class="form-control w-75 mb-3" type="text" placeholder="CAR BRAND" aria-label="default input example" id="car-brand"required>
 
         <!--input for car-model-->
-        <input class="form-control w-75 mb-4" type="text" placeholder="MODEL" aria-label="default input example" id="car-model"required>
+        <input class="form-control w-75 mb-3" type="text" placeholder="MODEL" aria-label="default input example" id="car-model"required>
 
         <!--input for car-number-->
-        <input class="form-control w-75 mb-4" type="text" placeholder="CAR NUMBER" aria-label="default input example" id="car-number"required>
+        <input class="form-control w-75 mb-3" type="text" placeholder="CAR NUMBER" aria-label="default input example" id="car-number"required>
 
         <!--input for year of manufacture-->
-        <input class="form-control w-75 mb-4" type="text" placeholder="YEAR OF MANUFACTURE" aria-label="default input example" id="year-of-manufacture" required>
+        <input class="form-control w-75 mb-3" type="text" placeholder="YEAR OF MANUFACTURE" aria-label="default input example" id="year-of-manufacture" required>
 
         <!--input for kms driven-->
-        <input class="form-control w-75 mb-4" type="text" placeholder="KMS DRIVEN" aria-label="default input example" id="kilometers-driven" required>
+        <input class="form-control w-75 mb-3" type="text" placeholder="KMS DRIVEN" aria-label="default input example" id="kilometers-driven" required>
 
-        <input class="form-control w-75 mb-4" type="text" placeholder="PRICE" aria-label="default input example" id="car-price" required>
+        <input class="form-control w-75 mb-3" type="text" placeholder="PRICE" aria-label="default input example" id="car-price" required>
 
-        <input class="form-control w-75 mb-4" type="text" placeholder="Any damages?" aria-label="default input example" id="damages" required>
+        <input class="form-control w-75 mb-3" type="text" placeholder="Any damages?" aria-label="default input example" id="damages" required>
 
         <!--type of car-->
         <!-- <label for="numberOf-owners" class="form-label w-75 text-white">Type of car</label> -->
-        <select class="form-select mb-4 w-75 btn-outline-success" aria-label="Default select example" id="car-type">
+        <select class="form-select mb-3 w-75 btn-outline-success" aria-label="Default select example" id="car-type">
           <option selected>Type of car</option>
           <option value="Vintage">VINTAGE</option>
           <option value="Luxury">LUXURY</option>
@@ -128,10 +131,10 @@
 
         <!--range bar for number of owners-->
         <label for="numberOf-owners" class="form-label w-75 text-white d-block" id = "ownerCount">No. Of Owners (1/3)</label>
-        <input type="range" class="form-range w-25 mb-4" min="1" max="3" id="numberOf-owners">
+        <input type="range" class="form-range w-25 mb-3" min="1" max="3" id="numberOf-owners">
 
         <!--checkbox for insurance availability-->
-        <div class="form-check mb-4">
+        <div class="form-check mb-3">
         <input class="form-check-input" type="checkbox" value="" id="insuranceAvailability">
         <label class="form-check-label text-white" for="insuranceAvailability" id = "insuranceLabel">Insurance Not Available</label>
         </div>
@@ -151,7 +154,7 @@
 
   <!--footer bar-->
   <footer class="navbar navbar-expand-sm navbar-light" id="navBar">
-    <div class="footer-container container-fluid">
+    <div class="footer-container container">
 
       <!--footer brand name-->
       <a href="/home/home.html" class="navbar-brand ms-0 ms-md-5">
@@ -177,10 +180,10 @@
       <div class="d-sm-block">
       <div class="mt-2 mb-1 mt-md-0 me-0 me-md-5" id="main-nav">
         <div class="btn-group" role="group" aria-label="Basic example">
-          <a href="#" class="btn btn-outline-success"><i class="bi bi-whatsapp"></i></a>
-          <a href="#" class="btn btn-outline-success"><i class="bi bi-envelope"></i></a>
-          <a href="#" class="btn btn-outline-success"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="btn btn-outline-success"><i class="bi bi-twitter"></i></i></a>
+          <a href="#" class="btn btn-dark"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="btn btn-dark"><i class="bi bi-envelope"></i></a>
+          <a href="#" class="btn btn-dark"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="btn btn-dark"><i class="bi bi-twitter"></i></i></a>
         </div>
       </div>
       </div>

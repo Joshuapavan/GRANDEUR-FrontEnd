@@ -10,24 +10,14 @@
   <link rel="stylesheet" href="faq.css">
   <title>frequently asked questions</title>
 </head>
-<body id="navBar">
+<body>
     <!--navbar for account login/signUp-->
-    <nav class="navbar navbar-expand-sm" id="navBar">
-      <div class="container-fluid justify-content-end border-secondary border-bottom">
-        <a href="/account/account.html" class="me-md-5 mb-2 text-decoration-none">
-          <span class="text-white"><i class="bi bi-person-fill"></i>
-          </span>
-          <span class="text-white" id="loginLabel"></span>
-        </a>
-      </div>
-    </nav>
-  
-    <!--main Navbar-->
-    <nav class="navbar navbar-expand-sm" id="navBar">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navBar">
+      <div class="container">
         <a href="/home/home.html" class="navbar-brand ms-0 ms-md-5">
           <span class="fw-bold">GRANDEUR</span>
         </a>
+        
         <!--toggle button for mobile devices-->
         <button class="navbar-toggler navbar-dark text-white-50" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#main-nav" aria-controls="main-nav" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -37,7 +27,7 @@
         <div class="collapse navbar-collapse navbar-dark justify-content-evenly align-center" id="main-nav">
           <ul class="navbar-nav">
             <li class="nav-item mx-md-4">
-              <a href="#buy" class="nav-link">BUY</a>
+              <a href="/buy/buy.html" class="nav-link">BUY</a>
             </li>
             <li class="nav-item mx-md-4">
               <a href="/sell/sell.html" class="nav-link">SELL</a>
@@ -51,7 +41,7 @@
           </ul>
         </div>
         
-        <!--mainNavbar search bar-->
+        <!--search bar-->
         <div class="d-none d-sm-block">
         <div class="collapse navbar-collapse mt-2 mb-1 mt-md-0 me-0 me-md-5" id="main-nav">
           <div class="input-group">
@@ -60,9 +50,17 @@
           </div>
         </div>
         </div>
+  
+        <div class="d-none d-sm-block" id = "accountDiv">
+          <a  href="/account/account.html" target="_parent" class="text-decoration-none text-white-50" id="account-click">
+            <span><i class="bi bi-person-fill"></i>
+            </span>
+            <span id="loginLabel"></span>
+          </a>
+        </div>
       </div>
     </nav>
-
+  
     <!--section-1 containing images and carousel effect-->
     <section class="mb-5">
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -74,6 +72,10 @@
         <div class="carousel-inner" id="autoChangeImages">
           <div class="carousel-item active" data-bs-interval="3000">
             <img src="/images/luxury1.jpg" class="d-block w-100 img-fluid" alt="...">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>First slide label</h5>
+            <p>Some representative placeholder content for the first slide.</p>
           </div>
           <div class="carousel-item" data-bs-interval="3000">
             <img src="/images/luxury6.jpg" class="d-block w-100 img-fluid" alt="...">
@@ -202,7 +204,7 @@
 
     <!--footer section starts-->
     <footer class="navbar navbar-expand-sm navbar-light mt-3" id="navBar">
-      <div class="footer-container container-fluid">
+      <div class="footer-container container">
 
         <!--footer brand name-->
         <a href="/home/home.html" class="navbar-brand ms-0 ms-md-5">
@@ -228,10 +230,10 @@
         <div class="d-sm-block">
         <div class="mt-2 mb-1 mt-md-0 me-0 me-md-5" id="main-nav">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="#" class="btn btn-outline-success"><i class="bi bi-whatsapp"></i></a>
-            <a href="#" class="btn btn-outline-success"><i class="bi bi-envelope"></i></a>
-            <a href="#" class="btn btn-outline-success"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="btn btn-outline-success"><i class="bi bi-twitter"></i></i></a>
+            <a href="#" class="btn btn-dark"><i class="bi bi-whatsapp"></i></a>
+            <a href="#" class="btn btn-dark"><i class="bi bi-envelope"></i></a>
+            <a href="#" class="btn btn-dark"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="btn btn-dark"><i class="bi bi-twitter"></i></i></a>
           </div>
         </div>
         </div>
