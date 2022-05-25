@@ -15,7 +15,7 @@ async function validate() {
   const mailRegex = '[a-z0-9]+@[a-z]+\.[a-z]{2,3}';
 
   if(!email.match(mailRegex)){
-    alert('Please enter a valid email address');
+    showAlert('Please enter a valid email address')
   }
   else
   if(email.length > 0 && password.length > 0){
@@ -36,37 +36,53 @@ async function validate() {
 
     if(response.status >= 200 && response.status < 300) {
       // printing something related to success response // 
-      alert("welcome Back "+data.name)
-      if(cookie === ""){
-        createCookie(data.name,data.email);
+      showAlert('Welcome, '+data.name);
+      validate(data.name, data.email);
       }
-      else{
-        if(cookie.name != data.name){
-          cookie = "name=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-          cookie = "email= expires = Thu, 01 Jan 1970 00:00:00 GMT";
-          createLocalStorage(data.name,data.email);
-        }
-        alert("created cookie ");
-
-      }
-    }
     if(response.status >= 400 && response.status < 500) {
-      alert("Invalid Credentials, Please try again \n Response Code : ("+response.status+")")
+      showAlert("Invalid Credentials, Please try again \n Response Code : ("+response.status+")")
     }
     if(response.status >= 500 && response.status < 600) {
-      alert("Internal server error: "+response.status)
+      showAlert("Internal server error: "+response.status);
     }
 
     if(data.name.length == 0 && data.email.length == 0){
-      alert("login failed, please try again later");
+      showAlert("login failed, please try again later");
     }
-}
-else{
-  alert('Enter email and password');
+  }
+  else{
+  showAlert('Enter email and password')
   }
 }
 
-function createLocalStorage(name,email){
-  localStorage.setItem("name",name);
-  localStorage.setItem("email",email);
+function validate(name, email){
+  const localName = localStorage.getItem('name');
+  const localEmail = localStorage.getItem('email');
+
+  if(localName != name && localEmail != email){
+    localStorage.setItem('name',name);
+    localStorage.setItem('email',email);
+  }
+}
+
+function showAlert(message){
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  background : '#EE7600',
+  showConfirmButton: false,
+  timer: 5000,
+  allowOutsideClick : false,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  title: '',
+  text: message,
+  color: '#000000'
+})
 }

@@ -11,10 +11,10 @@ document.getElementById('btn-sign').addEventListener('click', async function(){
 
   if(!email.match(mailRegex)) {
     labelForMail.innerHTML = "invalid email Id";
+    showAlert('Invalid Email')
   }
   else
   if(password == confirmPassword && email.match(mailRegex)){
-
     const signUpApi = 'http://localhost:8090/api/v1/registration';
     const response = await fetch(signUpApi,{
       method: 'POST',
@@ -32,21 +32,21 @@ document.getElementById('btn-sign').addEventListener('click', async function(){
 
     // if response is okay 
     if(response.status >= 200 && response.status < 300) {
-      alert("Welcome to Grandeur, "+data.name+"!\nPlease verify your email address in the inbox.");
+      showAlert("Welcome to Grandeur, "+data.name+"!\nPlease verify your email address in the inbox.");
     }
     
     if(response.status >= 400 && response.status < 500){
       // checking if the email already exists // 
       if(data.error == 'Conflict'){
-        alert('the email '+email+' already exists.\nPlease try again ('+response.status+')')
+        showAlert('the email '+email+' already exists.\nPlease try again ('+response.status+')');
       }
       else{
-        alert(response.error)
+        showAlert(response.error);
       }
     }
     // 
     if(response.status >= 500 && response.status < 600) {
-      alert("Internal server error! "+response.error+"\n"+response.status)
+      showAlert("Internal server error! "+response.error+"\n"+response.status);
     }
   }
   else{
@@ -64,3 +64,25 @@ function validate(name, email){
     localStorage.setItem('email',email);
   }
 }
+
+function showAlert(message){
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    background : '#EE7600',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
+  Toast.fire({
+    title: '',
+    text: message,
+    color: '#000000',
+    position: 'bottom-start'
+  })
+  }
