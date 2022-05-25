@@ -22,15 +22,65 @@ window.onload = function(){
         let output = "";
         for(let car of data){
             output += `
-            <div class="car">
-                <img src="${car.imageURL}" alt="${car.name}" />
-                <p class = "title">${car.brand}</p>
-                <p class = "description">${car.model}</p>
-                <p class = "price">${car.expectedPrice}</p>
+            <section class="container"s>
+            <div class="row">
+            <div class="col">
+            <img src="${car.imageURL}" class="img-fluid" alt="${car.name}">
             </div>
+            <div class="col">
+            <form action="#">
+
+            
+            <div>
+            <label class="infoToBuyer">Owner: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.1s">${car.sellerName}</label>
+            </div>
+            
+            <div>
+                <label for="" class="infoToBuyer">Brand: </label>
+                <label for="car-name" id="car-details" class="car-info animated bounceIn" style="animation-delay: 0.2s">${car.brand}</label>
+            </div>
+            
+            <div>
+                <label for="" class="infoToBuyer">Model: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.3s">${car.model} -(${car.year})</label>
+            </div> 
+
+            <div>
+                <label for="" class="infoToBuyer">Price: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.4s">${car.expectedPrice}/-</label>
+            </div> 
+    
+            <div>
+                <label for="" class="infoToBuyer"> Kilometers Driven: </label>
+                <label for="buyer-name" id="buyer-name"  class="car-info animated bounceIn" style="animation-delay: 0.5s">${car.kms}</label>
+            </div> 
+
+            <div>
+                <label for="" class="infoToBuyer"> No of Previous owners: </label>
+                <label for="buyer-name" id="buyer-name"  class="car-info animated bounceIn" style="animation-delay: 0.6s">${car.ownerCount}</label>
+            </div> 
+
+            <div>
+                <label for="" class="infoToBuyer"> Insurance Avaibility: </label>
+                <label for="buyer-name" id="buyer-name"  class="car-info animated bounceIn" style="animation-delay: 0.7s">${car.insuranceAvailability}</label>
+            </div> 
+
+            <div>
+                <label for="" class="infoToBuyer"> Damages: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.8s">${car.damages}</label>
+            </div> 
+
+            <button type="submit" id="btn-buy" class="btn btn-success mt-4 animated lightSpeedIn" style="animation-delay: 2s">Buy</button>
+            </form>
+            </div>
+        </div>
+        <div id="carsDiv">
+        </div>
+        </section>
             `;
         }
-        document.getElementById('carsDiv').innerHTML = output;
+        document.getElementById('carContainer').innerHTML = output;
     })
 
 
