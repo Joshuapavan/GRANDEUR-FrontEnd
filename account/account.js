@@ -1,23 +1,13 @@
-// const account = document.querySelector('#account-click');
-
-// account.addEventListener('click', () => {
-//   // preventDefault();
-//   window.location.href = '/Grandeur-FrontEnd/home/home.html';
-// })
-
 async function validate() {
 
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-  // let userName; 
-  // let userEmail;
 
   const mailRegex = '[a-z0-9]+@[a-z]+\.[a-z]{2,3}';
 
   if(!email.match(mailRegex)){
     showAlert('Please enter a valid email address')
   }
-  else
   if(email.length > 0 && password.length > 0){
     const signInApi = 'http://localhost:8090/api/v1/clients/signIn';
     const response = await fetch(signInApi,{
@@ -32,7 +22,6 @@ async function validate() {
   })
 
     var data = await response.json();
-    var cookie = document.cookie;
 
     if(response.status >= 200 && response.status < 300) {
       // printing something related to success response // 

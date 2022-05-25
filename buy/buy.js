@@ -30,7 +30,7 @@ window.onload = function(){
             </div>
             `;
         }
-        // document.getElementById('carsDiv').innerHTML = output;
+        document.getElementById('carsDiv').innerHTML = output;
     })
 
 

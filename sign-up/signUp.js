@@ -13,7 +13,7 @@ document.getElementById('btn-sign').addEventListener('click', async function(){
     labelForMail.innerHTML = "invalid email Id";
     showAlert('Invalid Email')
   }
-  else
+  
   if(password == confirmPassword && email.match(mailRegex)){
     const signUpApi = 'http://localhost:8090/api/v1/registration';
     const response = await fetch(signUpApi,{

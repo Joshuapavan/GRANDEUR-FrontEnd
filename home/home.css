@@ -58,7 +58,7 @@ footer > .footer-container {
 }
 .carousel-item {
   height: 100vh;
-  min-height: 300px;
+  min-height: 200px;
 }
 .carousel-caption {
   bottom: 220px;
@@ -82,7 +82,7 @@ footer > .footer-container {
   background: darkorange;
   padding: 10px 30px;
   display: inline-block;
-  color: #000;
+  color: #000000;
   margin-top: 15px;
   border-radius: 0.5rem;
 }

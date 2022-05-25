@@ -49,7 +49,8 @@ function showAlert(message){
   Toast.fire({
     title: '',
     text: message,
-    color: '#000000'
+    color: '#000000',
+    position: 'bottom-end'
   })
   }
 
