@@ -1,16 +1,13 @@
+
+
+
+
 body {
   /* background-color: #264653;
   background-color: #212f45; */
   /* background-color: #081c15; */
   /* background-color: #212121; */
   background: linear-gradient(90deg, black, #0F2027, #203A43, #2C5364, black 95%);
-}
-label {
-  color: #ffffff;
-}
-
-html{
-  scroll-behavior: smooth;
 }
 .text-decoration-none {
   font-size: 1rem;
@@ -53,67 +50,44 @@ html{
 /* img {
   height: 54rem;
 } */
-.container {
-  opacity: 0.9;
-  border-radius: 2rem;
-  /* margin-top: 22rem; */
-  padding: 1rem;
+
+/* josh */
+.buttons {
+  background-color: #000000;
+  color: #ffffff;
+  padding : 0.5rem;
+  text-align: center;
+  border-radius: 0.5rem;
 }
-@media (max-width: 500px) {
-  div > .col-sm {
-    display: block;
-  }
+
+/* vinay joshva ( 22/05/22 ) */
+.bg-light {
+  background-color: transparent !important;
 }
-@media (min-width: 650px) {
-  div > .col-sm {
-    position: absolute;
-    bottom: 10%;
-    left: 9%;
-    translate: middle;
-  }
+
+#account-click span {
+  color: darkorange;
+  font-size: 1em;
 }
-.btn-group .btn-outline-success {
-  color: #fff;
+.btn-group .btn-dark{
+  border: 1px solid darkorange;
+  background-color: transparent;
+  color: darkorange;
 }
-#about-us-image {
-  background-color: aliceblue;
-  width: 250px;
-  height: 250px;
-  border-radius: 12%;
-  position: relative;
-}
-div > .lead {
-  position: absolute;
-  left: 22%;
-  top: 42%;
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 0.1rem;
-  /* translate: middle; */
-}
-#personal-icons {
-  width: 250px;
-  height: 250px;
-}
-#personal-branding {
-  font-size: 1.6rem;
-  letter-spacing: 0.1rem;
-}
-footer > .footer-container {
-  display: block;
+.btn-group .btn-dark:hover {
+  background-color: darkorange;
+  color: white;
 }
 section {
-  /* background: rgb(189,195,199); */
-/* background: linear-gradient(90deg, #2d6a4f 0%, #bdc3c7 60%); */
-  background-color: #000000;
   padding: 100px;
-  /* text-align: center; */
+  background-color: white;
+  cursor: pointer;
 }
-section div:nth-of-type(1) img{
+/* section div:nth-of-type(1) img{
   width: 500px;
   height: 350px;
   border-radius: 30px;
-}
+} */
 section div:nth-of-type(2) {
   text-align: left;
 }
@@ -126,11 +100,4 @@ section div:nth-of-type(2) label {
 }
 section div:nth-of-type(2) button {
   padding: 7px 25px;
-}
-.bg-light {
-  background-color: transparent !important;
-}
-#account-click span {
-  color: darkorange;
-  font-size: 1em;
 }
