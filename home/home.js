@@ -32,7 +32,6 @@ searchBar.onchange = ()=>{
   window.location = 'http://127.0.0.1:5500/buy/buy.html';
 }
 
-
 function showAlert(message){
   const Toast = Swal.mixin({
     toast: true,
@@ -46,13 +45,12 @@ function showAlert(message){
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
+  
   Toast.fire({
     title: '',
     text: message,
     color: '#000000',
-    position: 'bottom-end'
   })
   }
-
 
 // set interval //

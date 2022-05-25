@@ -1,5 +1,5 @@
-async function validate() {
-
+const loginButton = document.getElementById('login');
+loginButton.addEventListener('click',async function(){
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
@@ -8,7 +8,8 @@ async function validate() {
   if(!email.match(mailRegex)){
     showAlert('Please enter a valid email address')
   }
-  if(email.length > 0 && password.length > 0){
+  else if(email != '' && password != ''){
+
     const signInApi = 'http://localhost:8090/api/v1/clients/signIn';
     const response = await fetch(signInApi,{
     method: 'POST',
@@ -23,8 +24,7 @@ async function validate() {
 
     var data = await response.json();
 
-    if(response.status >= 200 && response.status < 300) {
-      // printing something related to success response // 
+    if(response.status >= 200 && response.status < 300) { 
       showAlert('Welcome, '+data.name);
       validate(data.name, data.email);
       }
@@ -42,7 +42,9 @@ async function validate() {
   else{
   showAlert('Enter email and password')
   }
-}
+
+});
+
 
 function validate(name, email){
   const localName = localStorage.getItem('name');
@@ -55,23 +57,22 @@ function validate(name, email){
 }
 
 function showAlert(message){
-const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  background : '#EE7600',
-  showConfirmButton: false,
-  timer: 5000,
-  allowOutsideClick : false,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    background : '#EE7600',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
+  Toast.fire({
+    title: '',
+    text: message,
+    color: '#000000'
+  })
   }
-})
-
-Toast.fire({
-  title: '',
-  text: message,
-  color: '#000000'
-})
-}
