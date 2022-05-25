@@ -2,10 +2,10 @@ window.onload = function(){
     const localName = localStorage.getItem('name');
     const localEmail = localStorage.getItem('email');
 
-    if(localName != '' && localEmail != ''){
+    if(localName != 'undefined' && localEmail != 'undefined'){
         document.getElementById('loginLabel').innerHTML = localStorage.getItem('name');
     }
-    else{
+    if(localStorage.getItem('name') == 'undefined'){
         document.getElementById('loginLabel').innerHTML = 'Login';
     }
 }
@@ -32,25 +32,6 @@ window.onload = function(){
         }
         // document.getElementById('carsDiv').innerHTML = output;
     })
-
-
-    // var request = new XMLHttpRequest();
-    // request.open('GET',getAllCarsApi,true);
-    // request.send();
-
-    // request.onload = function() {
-    //     if(request.readyState == 4 && this.status >= 200 && this.status < 300) {
-    //         let cars = JSON.parse(this.responseText);
-
-    //         let output = "";
-
-    //         for(let car of cars) {
-    //             output += `
-    //             <div> 
-    //             `;
-    //         }
-    //     }
-    // }
 
 
 if(localStorage.getItem('search') != '' && localStorage.getItem('redirected') == 'true'){

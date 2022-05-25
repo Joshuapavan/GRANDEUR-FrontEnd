@@ -3,11 +3,14 @@ window.onload = function(){
   const localName = localStorage.getItem('name');
   const localEmail = localStorage.getItem('email');
 
-  if(localName != '' && localEmail != ''){
+  if(localName != 'undefined' && localEmail != 'undefined'){
     document.getElementById('loginLabel').innerHTML = localStorage.getItem('name');
   }
-  else{
+  if(localStorage.getItem('name') == 'undefined'){
+    showAlert('Welcome, Please Login or SignUp');
     document.getElementById('loginLabel').innerHTML = 'Login';
+  }else{
+    showAlert('Welcome,'+localName);
   }
 }
 
@@ -28,6 +31,27 @@ searchBar.onchange = ()=>{
   localStorage.setItem('redirected','true');
   window.location = 'http://127.0.0.1:5500/buy/buy.html';
 }
+
+
+function showAlert(message){
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    background : '#EE7600',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  Toast.fire({
+    title: '',
+    text: message,
+    color: '#000000'
+  })
+  }
 
 
 // set interval //
