@@ -171,6 +171,6 @@ document.getElementById('reset-button').addEventListener('click', function(){
 const searchBar = document.getElementById('search-input');
 searchBar.onchange = ()=>{
   localStorage.setItem('search',searchBar.value);
+  localStorage.setItem('redirected','true');
   window.location = 'http://127.0.0.1:5500/buy/buy.html';
 }
-
