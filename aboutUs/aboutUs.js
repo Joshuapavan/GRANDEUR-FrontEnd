@@ -8,13 +8,13 @@ linkedIn.addEventListener('click', (e) => {
 })
 
 window.onload = function(){
-  let cookie = {};
-  document.cookie.split(';').forEach(function(temp) {
-  let [key,value] = temp.split('=');
-  cookie[key.trim()] = value;
-  })
-  const loginDiv = document.getElementById('loginLabel').innerHTML = cookie.name;
-  if(cookie == ''){
-  loginDiv.innerHTML = "Login";
+  const localName = localStorage.getItem('name');
+  const localEmail = localStorage.getItem('email');
+
+  if(localName != '' && localEmail != ''){
+      document.getElementById('loginLabel').innerHTML = localStorage.getItem('name');
+  }
+  else{
+      document.getElementById('loginLabel').innerHTML = 'Login';
   }
 }

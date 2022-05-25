@@ -3,14 +3,13 @@ var popover = new bootstrap.Popover(document.querySelector('#contactus'), {
 })
 
 window.onload = function(){
-  // const localName = localStorage.getItem('name');
-  // const localEmail = localStorage.getItem('email');
+  const localName = localStorage.getItem('name');
+  const localEmail = localStorage.getItem('email');
 
-  // if(localName != '' && localEmail != ''){
-  //   document.getElementById('loginLabel').innerHTML = localStorage.getItem('name');
-  // }
-  // else{
-  //   document.getElementById('loginLabel').innerHTML = 'Login';
-  // }
-  document.getElementById('loginLabel').innerHTML = "Josh";
+  if(localName != '' && localEmail != ''){
+      document.getElementById('loginLabel').innerHTML = localStorage.getItem('name');
+  }
+  else{
+      document.getElementById('loginLabel').innerHTML = 'Login';
+  }
 }
