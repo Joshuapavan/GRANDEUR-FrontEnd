@@ -24,6 +24,7 @@ account.addEventListener('click', () => {
 const searchBar = document.getElementById('search-input');
 
 searchBar.oninput = ()=>{
+  location = 
 }
 
 
