@@ -12,6 +12,7 @@ const imageApi = 'http://localhost:8090/api/v1/cars/image1';
 
 const cloudflairAPI = 'https://api.cloudinary.com/v1_1/do1xxh1r3/image/upload';
 const cloudflairPreset = 'c0a3jkpf';
+var imageURL;
 
 const slider = document.getElementById('numberOf-owners');
 slider.value = 1;
@@ -33,7 +34,9 @@ insurance.addEventListener('change', function insuranceChecked(){
 
 
 const sellButton = document.getElementById('sell-button');
-sellButton.addEventListener('click', async function(){
+sellButton.addEventListener('click', async function(event){
+
+  event.preventDefault();
 
   const sellerName=document.getElementById("seller-name").value;
 
@@ -61,8 +64,6 @@ sellButton.addEventListener('click', async function(){
 
   const images = document.getElementById('file').files;
 
-  var imageURL;
-  
   let insurance;
 
   if(insuranceAvailability.checked == true) {
@@ -71,28 +72,27 @@ sellButton.addEventListener('click', async function(){
     insurance = false;
   }
 
-  if(images.size == 0){
-    showAlert("Please add an image.")
+  if(images.files.size == 0 || imageURL == ''){
+    showAlert("Please upload image.")
   }
-
-  const files = document.getElementById('file').files;
-  const formData = new FormData();
-  formData.append('file',files[0]);
-  formData.append('upload_preset',cloudflairPreset);
-
-  // uploading to cloudfalir api // 
-  const response = await fetch(cloudflairAPI,{
-  method: 'POST',
-  body: formData
-  })
+  else{
+    const files = document.getElementById('file').files;
+    const formData = new FormData();
+    formData.append('file',files[0]);
+    formData.append('upload_preset',cloudflairPreset);
+    
+    const response = await fetch(cloudflairAPI,{
+    method: 'POST',
+    body: formData
+    })
 
     var data = await response.json();
-
+    console.log(data);
     imageURL = data.secure_url;
-
+  }
 
   const sellApi = 'http://localhost:8090/api/v1/cars/'+sellerEmail;
-  const sellResponse = await fetch(sellApi, {
+  const response = await fetch(sellApi, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(
@@ -119,23 +119,23 @@ sellButton.addEventListener('click', async function(){
   })
 
   // extracting the data from the response promise // 
-  var data = await sellResponse.text()
+  var data = await response.text();
 
   if(response.status >= 200 && response.status < 300) {
-  // do nothing // 
-    // alert('added a car!')
     showAlert('Car Added!');
   }
-  if(response.status >= 400 && response.status < 500) {
-    if(response.status === 404) {
+  else if(response.status >= 400 && response.status < 500) {
+    if(response.status == 404) {
       // alert('Invalid Email, please sign up')
       showAlert('Invalid Email, please sign up');
     }
+    else{
     // alert('error while adding the car, Please fill all details \n('+response.status+')')
     showAlert('error while adding the car, Please fill all details \n('+response.status+')');
+    }
 
   }
-  if(response.status >= 500 && response.status < 600){
+  else if(response.status >= 500 && response.status < 600){
     // alert('Internal Server Error '+data.error+' '+response.status)
     showAlert('Internal Server Error '+data.error+' '+response.status);
   }
