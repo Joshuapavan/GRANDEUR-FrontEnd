@@ -23,8 +23,9 @@ account.addEventListener('click', () => {
 
 const searchBar = document.getElementById('search-input');
 
-searchBar.oninput = ()=>{
-  location = 
+searchBar.onchange = ()=>{
+  localStorage.setItem('search',searchBar.value);
+  window.location = 'http://127.0.0.1:5500/buy/buy.html';
 }
 
 
