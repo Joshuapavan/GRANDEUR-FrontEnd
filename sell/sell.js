@@ -2,6 +2,18 @@ var popover = new bootstrap.Popover(document.querySelector('#contactus'), {
   trigger: 'focus'
 });
 
+window.onload = function(){
+  const localName = localStorage.getItem('name');
+  const localEmail = localStorage.getItem('email');
+  
+  if((localName != 'undefined' && localEmail != 'undefined') || (localName != null && localEmail != null)){
+    document.getElementById('loginLabel').innerHTML = localStorage.getItem('name');
+  }
+  else if((localName == 'undefined' && localEmail == 'undefined') || (localName == null && localEmail == null)){
+    document.getElementById('loginLabel').innerHTML = 'Login';
+  }
+}
+
 const vintage = document.getElementById('vintageButton');
 const luxury = document.getElementById('luxuryButton');
 const image = document.getElementById('img');
@@ -27,10 +39,32 @@ insurance.addEventListener('change', function insuranceChecked(){
   if(insurance.checked == true){
     document.getElementById('insuranceLabel').innerHTML = "Insurance Available";
   }
-  else if(insurance.checked == false){
+  if(insurance.checked == false){
     document.getElementById('insuranceLabel').innerHTML = "Insurance Not Available";
   }
 });
+
+
+const imageInput = document.getElementById('file');
+imageInput.addEventListener('change',async function(event){
+
+  event.preventDefault();
+
+  const files = document.getElementById('file').files;
+  const formData = new FormData();
+  formData.append('file',files[0]);
+  formData.append('upload_preset',cloudflairPreset);
+
+  const response = await fetch(cloudflairAPI,{
+  method: 'POST',
+  body: formData
+  })
+
+  var data = await response.json();
+  console.log(data);
+  imageURL = data.secure_url;
+});
+
 
 
 const sellButton = document.getElementById('sell-button');
@@ -72,25 +106,10 @@ sellButton.addEventListener('click', async function(event){
     insurance = false;
   }
 
-  if(images.files.size == 0 || imageURL == ''){
+  if(imageURL == null || imageURL == ''){
     showAlert("Please upload image.")
   }
   else{
-    const files = document.getElementById('file').files;
-    const formData = new FormData();
-    formData.append('file',files[0]);
-    formData.append('upload_preset',cloudflairPreset);
-    
-    const response = await fetch(cloudflairAPI,{
-    method: 'POST',
-    body: formData
-    })
-
-    var data = await response.json();
-    console.log(data);
-    imageURL = data.secure_url;
-  }
-
   const sellApi = 'http://localhost:8090/api/v1/cars/'+sellerEmail;
   const response = await fetch(sellApi, {
     method: 'POST',
@@ -139,6 +158,7 @@ sellButton.addEventListener('click', async function(event){
     // alert('Internal Server Error '+data.error+' '+response.status)
     showAlert('Internal Server Error '+data.error+' '+response.status);
   }
+}
 });
 
 document.getElementById('reset-button').addEventListener('click', function(){
@@ -164,17 +184,6 @@ document.getElementById('reset-button').addEventListener('click', function(){
   expectedPrice.value = "";
 });
 
-  window.onload = function(){
-    const localName = localStorage.getItem('name');
-    const localEmail = localStorage.getItem('email');
-  
-    if(localName != 'undefined' && localEmail != 'undefined'){
-      document.getElementById('loginLabel').innerHTML = localStorage.getItem('name');
-    }
-    if(localStorage.getItem('name') == 'undefined'){
-      document.getElementById('loginLabel').innerHTML = 'Login';
-    }
-  }
 
 const searchBar = document.getElementById('search-input');
 searchBar.onchange = ()=>{
@@ -201,7 +210,6 @@ function showAlert(message){
   Toast.fire({
     title: '',
     text: message,
-    color: '#000000',
-    position: 'bottom-start'
+    color: '#000000'
   })
   }

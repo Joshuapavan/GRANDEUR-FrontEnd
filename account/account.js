@@ -1,15 +1,28 @@
 const loginButton = document.getElementById('login');
-loginButton.addEventListener('click',async function(){
+
+if(loginButton){
+loginButton.addEventListener('click',async function(event){
+
+  event.preventDefault();
+
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
   const mailRegex = '[a-z0-9]+@[a-z]+\.[a-z]{2,3}';
 
   if(!email.match(mailRegex)){
-    showAlert('Please enter a valid email address')
+    showAlert('Please enter a valid email address');
   }
-  else if(email != '' && password != ''){
-
+  else if(email == '' || email == null){
+    showAlert('Please enter an email address');
+  }
+  else if(password == '' || password == null){
+    showAlert('Please enter the password');
+  }
+  else if((email == '' || email == null) && (password == '' || password == null)){ 
+    showAlert("Enter your email and password");
+  }
+  else{
     const signInApi = 'http://localhost:8090/api/v1/clients/signIn';
     const response = await fetch(signInApi,{
     method: 'POST',
@@ -30,20 +43,29 @@ loginButton.addEventListener('click',async function(){
       }
     if(response.status >= 400 && response.status < 500) {
       showAlert("Invalid Credentials, Please try again \n Response Code : ("+response.status+")")
+      clearStorage();
     }
     if(response.status >= 500 && response.status < 600) {
       showAlert("Internal server error: "+response.status);
+      clearStorage();
     }
 
     if(data.name.length == 0 && data.email.length == 0){
       showAlert("login failed, please try again later");
+      clearStorage();
     }
-  }
-  else{
-  showAlert('Enter email and password')
   }
 
 });
+}
+
+
+function clearStorage(){
+  localStorage.removeItem('name');
+  localStorage.removeItem('email');
+  localStorage.removeItem('search');
+  localStorage.removeItem('redirected');
+}
 
 
 function validate(name, email){

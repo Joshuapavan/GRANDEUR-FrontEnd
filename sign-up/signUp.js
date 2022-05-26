@@ -1,10 +1,15 @@
-document.getElementById('btn-sign').addEventListener('click', async function(){
+const signupButton = document.getElementById('btn-sign');
+
+signupButton.addEventListener('click', async function(event){
+
+  event.preventDefault();
+
   const firstName=document.getElementById("firstName").value;
   const lastName=document.getElementById("lastName").value;
   const email=document.getElementById("email").value;
   const password=document.getElementById("pwd").value;
   const confirmPassword=document.getElementById("confirmPwd").value;
-  const errorMessage = document.getElementById("error-message");
+  const checkbox = document.getElementById("checkbox");
   const fullName=firstName+lastName;
   const mailRegex = '[a-z0-9]+@[a-z]+\.[a-z]{2,3}';
   const labelForMail = document.getElementById("label-for-mail");
@@ -13,8 +18,13 @@ document.getElementById('btn-sign').addEventListener('click', async function(){
     labelForMail.innerHTML = "invalid email Id";
     showAlert('Invalid Email')
   }
-  
-  if(password == confirmPassword && email.match(mailRegex)){
+  else if(password != confirmPassword) {
+    showAlert('Passwords don\'t match')
+  }
+  else if(!checkbox.checked) {
+    showAlert('Please Accept Our T&C')
+  }
+  else{
     const signUpApi = 'http://localhost:8090/api/v1/registration';
     const response = await fetch(signUpApi,{
       method: 'POST',
@@ -48,9 +58,6 @@ document.getElementById('btn-sign').addEventListener('click', async function(){
     if(response.status >= 500 && response.status < 600) {
       showAlert("Internal server error! "+response.error+"\n"+response.status);
     }
-  }
-  else{
-    errorMessage.innerHTML = "passwords don't match. Please try again!";
   }
 });
 

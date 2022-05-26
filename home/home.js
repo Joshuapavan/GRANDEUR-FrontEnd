@@ -3,10 +3,10 @@ window.onload = function(){
   const localName = localStorage.getItem('name');
   const localEmail = localStorage.getItem('email');
 
-  if(localName != 'undefined' && localEmail != 'undefined'){
+  if((localName != 'undefined' && localEmail != 'undefined') || (localName != null && localEmail != null)){
     document.getElementById('loginLabel').innerHTML = localStorage.getItem('name');
   }
-  if(localStorage.getItem('name') == 'undefined'){
+  if((localName == 'undefined' && localEmail == 'undefined') || (localName == null && localEmail == null)){
     showAlert('Welcome, Please Login or SignUp');
     document.getElementById('loginLabel').innerHTML = 'Login';
   }else{
