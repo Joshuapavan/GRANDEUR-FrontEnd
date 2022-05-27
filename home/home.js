@@ -6,6 +6,10 @@ window.onload = function(){
   if((localName != 'undefined' && localEmail != 'undefined') || (localName != null && localEmail != null)){
     document.getElementById('loginLabel').innerHTML = localStorage.getItem('name');
   }
+  if(localStorage.getItem('fromEmail') == 'true'){
+    showAlert('Welcome, please Login to Verify.');
+    // localStorage.setItem('fromEmail','false');
+  }
   if((localName == 'undefined' && localEmail == 'undefined') || (localName == null && localEmail == null)){
     showAlert('Welcome, Please Login or SignUp');
     document.getElementById('loginLabel').innerHTML = 'Login';
