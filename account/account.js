@@ -39,6 +39,8 @@ loginButton.addEventListener('click',async function(event){
 
     if(response.status >= 200 && response.status < 300) { 
       showAlert('Welcome, '+data.name);
+      window.location.replace("http://127.0.0.1:5501/home/home.html");
+
       validate(data.name, data.email);
       }
     if(response.status >= 400 && response.status < 500) {
