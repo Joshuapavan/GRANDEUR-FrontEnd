@@ -2,9 +2,19 @@ var popover = new bootstrap.Popover(document.querySelector('#contactus'), {
   trigger: 'focus'
 })
 
-const linkedIn = document.querySelector('#vinayLI');
-linkedIn.addEventListener('click', (e) => {
+const vinaylinkedIn = document.querySelector('#vinayLI');
+vinaylinkedIn.addEventListener('click', () => {
   window.open("https://www.linkedin.com/in/vinay-joshva15/");
+})
+
+const viveklinkedIn = document.querySelector('#vivekLI');
+viveklinkedIn.addEventListener('click', () => {
+  window.open("https://www.linkedin.com/in/vivek-kumar-438b3a1b9/");
+})
+
+const pavanlinkedIn = document.querySelector('#pavanLI');
+pavanlinkedIn.addEventListener('click', () => {
+  window.open("https://www.linkedin.com/in/pavan-kumar-g-906a/");
 })
 
 window.onload = function(){
