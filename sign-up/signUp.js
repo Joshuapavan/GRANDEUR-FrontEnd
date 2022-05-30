@@ -18,6 +18,10 @@ signupButton.addEventListener('click', async function(event){
     labelForMail.innerHTML = "invalid email Id";
     showAlert('Invalid Email')
   }
+  else if(email.match(mailRegex)) {
+    labelForMail.innerHTML = "";
+  }
+  
   else if(password != confirmPassword) {
     showAlert('Passwords don\'t match')
   }
