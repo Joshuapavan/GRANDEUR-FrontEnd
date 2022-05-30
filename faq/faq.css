@@ -56,6 +56,10 @@ html{
   border: none;
   border-radius: none;  
 }
+.accordion-body {
+  background-color: black;
+  color: darkorange;
+}
 .bg-light {
   background-color: transparent !important;
 }
