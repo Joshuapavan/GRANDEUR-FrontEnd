@@ -47,6 +47,7 @@ signupButton.addEventListener('click', async function(event){
     // if response is okay 
     if(response.status >= 200 && response.status < 300) {
       showAlert("Welcome to Grandeur, "+data.name+"!\nPlease verify your email address in the inbox.");
+      window.location.replace("https://mail.google.com/");
     }
     
     if(response.status >= 400 && response.status < 500){
