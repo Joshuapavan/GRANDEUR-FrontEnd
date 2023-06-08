@@ -23,14 +23,15 @@ loginButton.addEventListener('click',async function(event){
     showAlert("Enter your email and password");
   }
   else{
-    const signInApi = 'http://localhost:8090/api/v1/clients/signIn';
+    const API_URL = 'http://localhost:3000'
+    const signInApi = API_URL+'/users/login';
     const response = await fetch(signInApi,{
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body : JSON.stringify(
       {
         'email' : email,
-        'password' : password
+        'password_digest' : password
       }
     )
   })
@@ -38,10 +39,10 @@ loginButton.addEventListener('click',async function(event){
     var data = await response.json();
 
     if(response.status >= 200 && response.status < 300) { 
-      showAlert('Welcome, '+data.name);
+      showAlert('Welcome, '+data.first_name);
       window.location.replace("http://127.0.0.1:5501/home/home.html");
 
-      validate(data.name, data.email);
+      validate(data.first_name, data.email);
       }
     if(response.status >= 400 && response.status < 500) {
       showAlert("Invalid Credentials, Please try again \n Response Code : ("+response.status+")")
@@ -52,7 +53,7 @@ loginButton.addEventListener('click',async function(event){
       clearStorage();
     }
 
-    if(data.name.length == 0 && data.email.length == 0){
+    if(data.first_name.length == 0 && data.email.length == 0){
       showAlert("login failed, please try again later");
       clearStorage();
     }

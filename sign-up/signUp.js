@@ -10,7 +10,6 @@ signupButton.addEventListener('click', async function(event){
   const password=document.getElementById("pwd").value;
   const confirmPassword=document.getElementById("confirmPwd").value;
   const checkbox = document.getElementById("checkbox");
-  const fullName=firstName+lastName;
   const mailRegex = '[a-z0-9]+@[a-z]+\.[a-z]{2,3}';
   const labelForMail = document.getElementById("label-for-mail");
 
@@ -29,27 +28,31 @@ signupButton.addEventListener('click', async function(event){
     showAlert('Please Accept Our T&C')
   }
   else{
-    const signUpApi = 'http://localhost:8090/api/v1/registration';
+    const API_URL = 'http://localhost:3000'
+    const signUpApi = API_URL+'/users/sign_up';
     const response = await fetch(signUpApi,{
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(
         {
-          'name': fullName,
+          'first_name': firstName,
+          'last_name': lastName,
           'email': email,
           'password': password
         })
     })
 
     var data = await response.json();
-    validate(data.name, data.email);
+    validate(data.first_name, data.email);
 
     // if response is okay 
     if(response.status >= 200 && response.status < 300) {
-      showAlert("Welcome to Grandeur, "+data.name+"!\nPlease verify your email address in the inbox.");
-      window.location.replace("https://mail.google.com/");
+      showAlert("Welcome to CARZ, "+data.first_name+"!");
+      window.location.replace("http://127.0.0.1:5501/home/home.html");
+      // showAlert("Welcome to CARZ, "+data.first_name+"!\nPlease verify your email address in the inbox.");
+      // window.location.replace("https://mail.google.com/");
     }
-    
+  
     if(response.status >= 400 && response.status < 500){
       // checking if the email already exists // 
       if(data.error == 'Conflict'){

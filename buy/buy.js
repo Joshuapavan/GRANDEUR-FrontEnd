@@ -9,84 +9,72 @@ window.onload = function(){
         document.getElementById('loginLabel').innerHTML = 'Login';
     }
 }
+const getAllCarsApi = 'http://localhost:3000/cars/all';
+fetch(getAllCarsApi)
+.then(function (response) {
+    return response.json();
+})
+.then(function (data) {
+    console.log(data);
+    console.log(data.cars.data.length);
 
-    const getAllCarsApi = 'http://localhost:8090/api/v1/cars';
-    fetch(getAllCarsApi)
-    .then(function (response) {
-        return response.json()
-    })
-    .then(function(data){
-        console.log(data);
-        console.log(data.length);
-
-        let output = "";
-        for(let car of data){
-            output += `
-            <section class="container"s>
-            <div class="row">
+    let output = "";
+    for (let carData of data.cars.data) {
+    const car = carData.attributes;
+    output += `
+        <section class="container"s>
+        <div class="row">
             <div class="col">
-            <img src="${car.imageURL}" class="img-fluid" alt="${car.name}">
+            <img src="${car.image}" class="img-fluid" alt="${car.name}">
             </div>
             <div class="col">
             <form action="#">
-
-            
-            <div>
-            <label class="infoToBuyer">Owner: </label>
-                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.1s">${car.sellerName}</label>
-            </div>
-            
-            <div>
+                <div>
+                <label class="infoToBuyer">Owner: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.1s">${car.name}</label>
+                </div>
+                <div>
                 <label for="" class="infoToBuyer">Email: </label>
-                <label for="car-name" id="car-details" class="car-info animated bounceIn" style="animation-delay: 0.2s">${car.sellerEmail}</label>
-            </div>
-
-            <div>
+                <label for="car-name" id="car-details" class="car-info animated bounceIn" style="animation-delay: 0.2s">${car.email}</label>
+                </div>
+                <div>
                 <label for="" class="infoToBuyer">Brand: </label>
                 <label for="car-name" id="car-details" class="car-info animated bounceIn" style="animation-delay: 0.2s">${car.brand}</label>
-            </div>
-            
-            
-            <div>
+                </div>
+                <div>
                 <label for="" class="infoToBuyer">Model: </label>
-                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.3s">${car.model} -(${car.year})</label>
-            </div> 
-
-            <div>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.3s">${car.model} - (${car.year_of_manufacture})</label>
+                </div>
+                <div>
                 <label for="" class="infoToBuyer">Price: </label>
-                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.4s">${car.expectedPrice}/-</label>
-            </div> 
-    
-            <div>
-                <label for="" class="infoToBuyer"> Kilometers Driven: </label>
-                <label for="buyer-name" id="buyer-name"  class="car-info animated bounceIn" style="animation-delay: 0.5s">${car.kms}</label>
-            </div> 
-
-            <div>
-                <label for="" class="infoToBuyer"> No of Previous owners: </label>
-                <label for="buyer-name" id="buyer-name"  class="car-info animated bounceIn" style="animation-delay: 0.6s">${car.ownerCount}</label>
-            </div> 
-
-            <div>
-                <label for="" class="infoToBuyer"> Insurance Avaibility: </label>
-                <label for="buyer-name" id="buyer-name"  class="car-info animated bounceIn" style="animation-delay: 0.7s">${car.insuranceAvailability}</label>
-            </div> 
-
-            <div>
-                <label for="" class="infoToBuyer"> Damages: </label>
-                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.8s">${car.damages}</label>
-            </div> 
-
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.4s">${car.price}/-</label>
+                </div>
+                <div>
+                <label for="" class="infoToBuyer">Kilometers Driven: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.5s">${car.kms_driven}</label>
+                </div>
+                <div>
+                <label for="" class="infoToBuyer">No of Previous owners: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.6s">${car.no_of_owners}</label>
+                </div>
+                <div>
+                <label for="" class="infoToBuyer">Insurance Availability: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.7s">${car.insured}</label>
+                </div>
+                <div>
+                <label for="" class="infoToBuyer">Damages: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.8s">${car.any_damages}</label>
+                </div>
             </form>
             </div>
         </div>
-        <div id="carsDiv">
-        </div>
+        <div id="carsDiv"></div>
         </section>
-            `;
-        }
-        document.getElementById('carContainer').innerHTML = output;
-    })
+    `;
+    }
+    document.getElementById('carContainer').innerHTML = output;
+});
+
 
 
 if(localStorage.getItem('search') != '' && localStorage.getItem('redirected') == 'true'){
@@ -99,79 +87,81 @@ if(localStorage.getItem('search') != '' && localStorage.getItem('redirected') !=
     localStorage.setItem('redirected','false');
 }
 
-async function search(brandName){
-    const searchApi = 'http://localhost:8090/api/v1/cars/search';
-    const response = await fetch(searchApi,{
-        method:'POST',
-        headers: {'Content-Type': 'application/json'},
-        body : JSON.stringify({ 
-            "brand" : brandName
-        })
-    });
+// async function search(brandName){
+//     const searchApi = 'http://localhost:3000/cars/search';
+//     const response = await fetch(searchApi,{
+//         method:'GET',
+//         headers: {'Content-Type': 'application/json'},
+//         body : JSON.stringify({ 
+//             "search" : brandName
+//         })
+//     });
+
+async function search(brandName) {
+const searchApi = `http://localhost:3000/cars/search?search=${encodeURIComponent(brandName)}`;
+const response = await fetch(searchApi, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+});
 
     if(response.status >= 200 && response.status < 300){
     const data = await response.json(); // array of JSON objects // 
+
     let output = "";
-    for(let car of data){
-        output += `
+    for (let carData of data.cars.data) {
+    const car = carData.attributes;
+    output += `
         <section class="container"s>
         <div class="row">
-        <div class="col">
-        <img src="${car.imageURL}" class="img-fluid" alt="${car.name}">
+            <div class="col">
+            <img src="${car.image}" class="img-fluid" alt="${car.name}">
+            </div>
+            <div class="col">
+            <form action="#">
+                <div>
+                <label class="infoToBuyer">Owner: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.1s">${car.name}</label>
+                </div>
+                <div>
+                <label for="" class="infoToBuyer">Email: </label>
+                <label for="car-name" id="car-details" class="car-info animated bounceIn" style="animation-delay: 0.2s">${car.email}</label>
+                </div>
+                <div>
+                <label for="" class="infoToBuyer">Brand: </label>
+                <label for="car-name" id="car-details" class="car-info animated bounceIn" style="animation-delay: 0.2s">${car.brand}</label>
+                </div>
+                <div>
+                <label for="" class="infoToBuyer">Model: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.3s">${car.model} - (${car.year_of_manufacture})</label>
+                </div>
+                <div>
+                <label for="" class="infoToBuyer">Price: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.4s">${car.price}/-</label>
+                </div>
+                <div>
+                <label for="" class="infoToBuyer">Kilometers Driven: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.5s">${car.kms_driven}</label>
+                </div>
+                <div>
+                <label for="" class="infoToBuyer">No of Previous owners: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.6s">${car.no_of_owners}</label>
+                </div>
+                <div>
+                <label for="" class="infoToBuyer">Insurance Availability: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.7s">${car.insured}</label>
+                </div>
+                <div>
+                <label for="" class="infoToBuyer">Damages: </label>
+                <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.8s">${car.any_damages}</label>
+                </div>
+            </form>
+            </div>
         </div>
-        <div class="col">
-        <form action="#">
-
-        
-        <div>
-        <label class="infoToBuyer">Owner: </label>
-            <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.1s">${car.sellerName}</label>
-        </div>
-        
-        <div>
-            <label for="" class="infoToBuyer">Brand: </label>
-            <label for="car-name" id="car-details" class="car-info animated bounceIn" style="animation-delay: 0.2s">${car.brand}</label>
-        </div>
-        
-        <div>
-            <label for="" class="infoToBuyer">Model: </label>
-            <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.3s">${car.model} -(${car.year})</label>
-        </div> 
-
-        <div>
-            <label for="" class="infoToBuyer">Price: </label>
-            <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.4s">${car.expectedPrice}/-</label>
-        </div> 
-
-        <div>
-            <label for="" class="infoToBuyer"> Kilometers Driven: </label>
-            <label for="buyer-name" id="buyer-name"  class="car-info animated bounceIn" style="animation-delay: 0.5s">${car.kms}</label>
-        </div> 
-
-        <div>
-            <label for="" class="infoToBuyer"> No of Previous owners: </label>
-            <label for="buyer-name" id="buyer-name"  class="car-info animated bounceIn" style="animation-delay: 0.6s">${car.ownerCount}</label>
-        </div> 
-
-        <div>
-            <label for="" class="infoToBuyer"> Insurance Avaibility: </label>
-            <label for="buyer-name" id="buyer-name"  class="car-info animated bounceIn" style="animation-delay: 0.7s">${car.insuranceAvailability}</label>
-        </div> 
-
-        <div>
-            <label for="" class="infoToBuyer"> Damages: </label>
-            <label for="buyer-name" id="buyer-name" class="car-info animated bounceIn" style="animation-delay: 0.8s">${car.damages}</label>
-        </div> 
-
-        </form>
-        </div>
-    </div>
-    <div id="carsDiv">
-    </div>
-    </section>
-        `;
-        }
-        document.getElementById('carContainer').innerHTML = output;
+        <div id="carsDiv"></div>
+        </section>
+    `;
+    }
+    document.getElementById('carContainer').innerHTML = output;
     }
     else if(data.length == 0){
         showAlert('No cars found');
